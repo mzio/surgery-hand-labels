@@ -1,0 +1,89 @@
+{
+  "data": [
+    {
+      "id": "labeled_index",
+      "last_labeled": -1
+    },
+    {
+      "id": 0,
+      "name": "frame_10.png",
+      "path": "../images/frame_10.png",
+      "labels": [],
+      "keypoints": true,
+      "annotator_id": "",
+      "labeled": false
+    },
+    {
+      "id": 1,
+      "name": "frame_20.png",
+      "path": "../images/frame_20.png",
+      "labels": [],
+      "keypoints": true,
+      "annotator_id": "",
+      "labeled": false
+    },
+    {
+      "id": 2,
+      "name": "frame_30.png",
+      "path": "../images/frame_30.png",
+      "labels": [],
+      "keypoints": true,
+      "annotator_id": "",
+      "labeled": false
+    },
+    {
+      "id": 3,
+      "name": "frame_40.png",
+      "path": "../images/frame_40.png",
+      "labels": [],
+      "keypoints": false,
+      "annotator_id": "",
+      "labeled": false
+    },
+    {
+      "id": 4,
+      "name": "frame_50.png",
+      "path": "../images/frame_50.png",
+      "labels": [],
+      "keypoints": false,
+      "annotator_id": "",
+      "labeled": false
+    },
+    {
+      "id": 5,
+      "name": "frame_60.png",
+      "path": "../images/frame_60.png",
+      "labels": [],
+      "keypoints": true,
+      "annotator_id": "",
+      "labeled": false
+    },
+    {
+      "id": 6,
+      "name": "frame_70.png",
+      "path": "../images/frame_70.png",
+      "labels": [],
+      "keypoints": false,
+      "annotator_id": "",
+      "labeled": false
+    },
+    {
+      "id": 7,
+      "name": "frame_80.png",
+      "path": "../images/frame_80.png",
+      "labels": [],
+      "keypoints": false,
+      "annotator_id": "",
+      "labeled": false
+    },
+    {
+      "id": 8,
+      "name": "frame_90.png",
+      "path": "../images/frame_90.png",
+      "labels": [],
+      "keypoints": false,
+      "annotator_id": "",
+      "labeled": false
+    }
+  ]
+}
