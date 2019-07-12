@@ -18,15 +18,24 @@ We want to install one dependency globally: `json-server`. This will serve as a 
   - Should be good to go.   
 
 ## Actually starting things up.  
-First, make sure you have data. Talk to me about this. Ideally, this should be saved in the `./src/images` folder.  
-
-Next, prepare the data for annotation by running `python init_data.py`.  
-
-Afterwards, set up the local server to load data with `json-server --watch src/data.json -p 3001`.  
-
-Finally, run the actual software with `yarn start`.  
+1. First, make sure you have data. This can be a folder of image files. Save this to `./src/images` (example provided).    
+2. Next, prepare the data for annotation by running `python init_data.py`  
+3. Afterwards, set up the local server to load data with `json-server --watch src/data.json -p 3001`  
+4. Finally, run the actual software with `yarn start` or `npm start`   
 
 
-## Todos
+## Todos  
 
-- [ ] Feed in images based on JSON file - JSON file should specify image path, labels (list of annotations: top, down, left, right, right or left hand, keypoints (1 - 23) (can be none))
+Fundamentals:  
+- [x] Feed in images based on JSON file
+- [x] Enable saving labels directly to local file    
+- [x] Implement bounding box labeling  
+
+Useful Features:      
+- [ ] Implement hand keypoint labeling    
+- [ ] Ergonomic key commands  
+
+Nice to have:  
+- [ ] Enable switching between images  
+- [ ] Display annotations on load  
+- [ ] Clear all labels key command    
