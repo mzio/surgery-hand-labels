@@ -17,6 +17,15 @@ We want to install one dependency globally: `json-server`. This will serve as a 
   - Update system variables with `source ~/.profile`  
   - Should be good to go.   
 
+## Actually starting things up.  
+First, make sure you have data. Talk to me about this. Ideally, this should be saved in the `./src/images` folder.  
+
+Next, prepare the data for annotation by running `python init_data.py`.  
+
+Afterwards, set up the local server to load data with `json-server --watch src/data.json -p 3001`.  
+
+Finally, run the actual software with `yarn start`.  
+
 
 ## Todos
 
