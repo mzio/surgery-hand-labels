@@ -64,8 +64,8 @@ export default class SubmitButton extends Component {
     // HTMLFormElement.prototype.submit.call(form);
   }
 
-  submitTask(e) {
-    e.preventDefault();
+  submitTask() {
+    // e.preventDefault();
     const labelIndex = config["submit"][env] + "/labeled_index";
     const imagePath = config["submit"][env] + "/" + this.props.imageID;
     axios
@@ -135,18 +135,14 @@ export default class SubmitButton extends Component {
 
   render() {
     const inputElement = this.createInputElement();
+    if (this.props.submit) {
+      this.submitTask();
+    }
 
-    return (
-      <div id="Submit">
-        {/* <form
-          id="submitForm"
-          type="submit"
-          method="POST"
-          action={this.getSubmissionUrl()}
-        > */}
-        {inputElement}
-        {/* </form> */}
-      </div>
-    );
+    if (this.props.show) {
+      return <div id="Submit">{inputElement}</div>;
+    } else {
+      return null;
+    }
   }
 }

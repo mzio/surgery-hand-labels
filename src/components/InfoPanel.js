@@ -16,35 +16,41 @@ export default class InfoPanel extends Component {
         <Card style={{ width: "100%" }}>
           <div class="card-header">Quick Shortcuts</div>
           <ListGroup variant="flush">
-            <ListGroup.Item>
+            <ListGroup.Item style={{ padding: "0.64rem 1.25rem" }}>
               <span id="keybutton">
                 <Badge variant="light">Z</Badge>
               </span>
               Undo
             </ListGroup.Item>
-            <ListGroup.Item>
+            <ListGroup.Item style={{ padding: "0.64rem 1.25rem" }}>
               <span id="keybutton">
                 <Badge variant="light">X</Badge>
               </span>
               Redo
             </ListGroup.Item>
-            <ListGroup.Item>
+            <ListGroup.Item style={{ padding: "0.64rem 1.25rem" }}>
               <span id="keybutton">
                 <Badge variant="light">C</Badge>
               </span>
               Toggle cross
             </ListGroup.Item>
-            <ListGroup.Item>
+            <ListGroup.Item style={{ padding: "0.64rem 1.25rem" }}>
               <span id="keybutton">
                 <Badge variant="light">K</Badge>
               </span>
               Toggle keypoint reference
             </ListGroup.Item>
-            <ListGroup.Item>
+            <ListGroup.Item style={{ padding: "0.64rem 1.25rem" }}>
               <span id="keybutton">
                 <Badge variant="light">L / R</Badge>
               </span>
               Toggle left or right hand
+            </ListGroup.Item>
+            <ListGroup.Item style={{ padding: "0.64rem 1.25rem" }}>
+              <span id="keybutton">
+                <Badge variant="primary">Enter</Badge>
+              </span>
+              Submit label
             </ListGroup.Item>
           </ListGroup>
         </Card>

@@ -80,6 +80,11 @@ export default class SubmitForm extends Component {
   }
 
   displayTasks() {
+    return (
+      <Card.Subtitle className="mb-2 text-muted">
+        Currently annotating <b>{this.props.hand}</b> hands
+      </Card.Subtitle>
+    ); // Don't have keypoints implemented yet
     if (this.props.keypoints) {
       return (
         <Card.Subtitle className="mb-2 text-muted">
@@ -148,7 +153,7 @@ export default class SubmitForm extends Component {
           <Card.Text>
             Please draw a box around <b>each</b> hand, trying to make it as
             precise as possible and specifying whether it's a <b>left</b> or{" "}
-            <b>right</b> hand. Click <b>submit</b> to move on to the next image.
+            <b>right</b> hand. Hit <b>enter</b> to move on to the next image.
           </Card.Text>
           {/* <form
             // id="submitForm"
@@ -156,7 +161,7 @@ export default class SubmitForm extends Component {
             method="POST"
             action={this.getSubmissionUrl()}
           > */}
-          <Form id="submitForm">
+          <Form id="submitForm" style={{ height: "0px" }}>
             <fieldset>
               <Form.Group>
                 {/* <Form.Label as={Row}>
@@ -203,6 +208,8 @@ export default class SubmitForm extends Component {
                 action="submit"
                 imageID={this.props.imageID}
                 lastLabeled={this.props.lastLabeled}
+                submit={this.props.submit}
+                show={this.props.show}
               />
               {/* <ButtonGroup>
                 <SubmitButtonContainer action="save" />

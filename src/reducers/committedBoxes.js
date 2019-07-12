@@ -45,23 +45,6 @@ const boxes = (state = {}, action) => {
         return result;
       }, {});
 
-    // // update the position of an existing box in the Redux store
-    // case "UPDATE_BOX":
-    //   let updateId = action.id;
-    //   return Object.keys(state).reduce((result, key) => {
-    //     if (key === updateId) {
-    //       let box = state[key];
-    //       result[key] = {
-    //         ...box,
-    //         position: action.position,
-    //         hand: action.hand
-    //       };
-    //     } else {
-    //       result[key] = state[key];
-    //     }
-    //     return result;
-    //   }, {});
-
     default:
       return state;
   }

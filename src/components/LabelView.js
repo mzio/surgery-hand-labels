@@ -43,7 +43,8 @@ class LabelView extends Component {
       currY: null,
       imgLoaded: false,
       imageUrl: null,
-      showCrosshair: true
+      showCrosshair: true,
+      submit: false
     };
   }
 
@@ -96,6 +97,10 @@ class LabelView extends Component {
         break;
       case 82:
         console.log("You just pressed R!");
+        break;
+      case 13:
+        console.log("You just pressed Enter!");
+        this.setState({ submit: true });
         break;
 
       default:
@@ -264,6 +269,8 @@ class LabelView extends Component {
                 imageID={this.props.imageID}
                 hand={this.props.hand}
                 lastLabeled={this.props.lastLabeled}
+                submit={this.state.submit}
+                show={false}
               />
             </Col>
           </Row>
