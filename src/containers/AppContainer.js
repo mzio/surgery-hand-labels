@@ -58,7 +58,7 @@ export default class AppContainer extends Component {
 
   render() {
     var start_ix = data.data[0].last_labeled + 2;
-    var progress = Math.round((start_ix / (data.data.length - 1)) * 100);
+    var progress = Math.round((start_ix / data.data.length) * 100);
 
     return (
       <App

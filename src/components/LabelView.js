@@ -33,6 +33,7 @@ class LabelView extends Component {
     this.getCurrentBox = this.getCurrentBox.bind(this);
     this.refreshDrawing = this.refreshDrawing.bind(this);
     this.isCrosshairReady = this.isCrosshairReady.bind(this);
+    this.loadBoxes = this.loadBoxes.bind(this);
 
     this.state = {
       isDrawing: false,
@@ -69,6 +70,18 @@ class LabelView extends Component {
       currX: this.state.currX,
       currY: this.state.currY
     };
+  }
+
+  loadBoxes() {
+    // this.props.savedBoxes.forEach((e) => {
+    //   this.props.commitDrawingAsBox(
+    //     e.id,
+    //     e.
+    //     this.state.currentBoxId,
+    //     boxPosition,
+    //     this.props.hand
+    //   );
+    // });
   }
 
   handleKeyPress(event) {
@@ -219,18 +232,6 @@ class LabelView extends Component {
             </Col>
           </Row>
           <Row>
-            <Col sm={0} />
-            <Col sm={8}>
-              Progress:
-              <ProgressBar
-                animated
-                now={this.props.progress}
-                label={`${this.props.progress}%`}
-              />
-            </Col>
-            <Col sm={0} />
-          </Row>
-          <Row>
             <Col sm={8}>
               <div id="LabelView">
                 {this.state.showCrosshair && this.isCrosshairReady() && (
@@ -261,6 +262,18 @@ class LabelView extends Component {
               <div style={{ clear: "both" }} />
               {/* </div> */}
             </Col>
+          </Row>
+          <Row id="Progress">
+            <Col sm={0} />
+            <Col sm={8}>
+              {/* Progress: */}
+              <ProgressBar
+                animated
+                now={this.props.progress}
+                label={`${this.props.progress}% labeled`}
+              />
+            </Col>
+            <Col sm={0} />
           </Row>
           <Row>
             <Col>

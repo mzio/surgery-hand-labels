@@ -153,7 +153,9 @@ export default class SubmitForm extends Component {
           <Card.Text>
             Please draw a box around <b>each</b> hand, trying to make it as
             precise as possible and specifying whether it's a <b>left</b> or{" "}
-            <b>right</b> hand. Hit <b>enter</b> to move on to the next image.
+            <b>right</b> hand.
+            <br />
+            Hit <b>enter</b> to move on to the next image.
           </Card.Text>
           {/* <form
             // id="submitForm"
