@@ -34,12 +34,12 @@ export default class InfoPanel extends Component {
               </span>
               Toggle cross
             </ListGroup.Item>
-            <ListGroup.Item style={{ padding: "0.64rem 1.25rem" }}>
+            {/* <ListGroup.Item style={{ padding: "0.64rem 1.25rem" }}>
               <span id="keybutton">
                 <Badge variant="light">K</Badge>
               </span>
               Toggle keypoint
-            </ListGroup.Item>
+            </ListGroup.Item> */}
             <ListGroup.Item style={{ padding: "0.64rem 1.25rem" }}>
               <span id="keybutton">
                 <Badge variant="light">L / R</Badge>
