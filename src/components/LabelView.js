@@ -4,6 +4,7 @@ import ImageContainer from "../containers/ImageContainer";
 import Crosshair from "../components/Crosshair";
 import InfoPanel from "../components/InfoPanel";
 import SubmitForm from "../components/SubmitForm";
+import Header from "../components/Header";
 import { calculateRectPosition, isRectangleTooSmall } from "../utils/drawing";
 // import SubmitButtonContainer from "../containers/SubmitButtonContainer";
 import {
@@ -228,7 +229,14 @@ class LabelView extends Component {
         <Container>
           <Row>
             <Col>
-              <h1 id="Header">Surgery Hand Labels</h1>
+              <h1 id="Header" style={{ marginBottom: "1rem" }}>
+                Surgery Hand Bounding Boxes
+              </h1>
+              <h2 style={{ textAlign: "center" }}>
+                Currently annotating{" "}
+                <span style={{ color: "#007bff" }}>{this.props.hand}</span>{" "}
+                hands
+              </h2>
             </Col>
           </Row>
           <Row>

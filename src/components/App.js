@@ -26,11 +26,21 @@ class App extends Component {
     switch (event.keyCode) {
       case 76:
         // console.log("You just pressed L!");
-        this.setState({ hand: "left" });
+        if (this.state.hand == "right") {
+          this.setState({ hand: "left" });
+        } else if (this.state.hand == "left") {
+          this.setState({ hand: "right" });
+        }
+        // this.setState({ hand: "left" });
         break;
       case 82:
         // console.log("You just pressed R!"r);
-        this.setState({ hand: "right" });
+        if (this.state.hand == "left") {
+          this.setState({ hand: "right" });
+        } else if (this.state.hand == "right") {
+          this.setState({ hand: "left" });
+        }
+        // this.setState({ hand: "right" });
         break;
     }
   }
@@ -38,7 +48,7 @@ class App extends Component {
   render() {
     return (
       <div id="App">
-        {this.props.showHeader === true && <Header />}
+        {this.props.showHeader === true && <Header instruction="hello" />}
         <LabelViewContainer
           imageURL={this.props.imageURL}
           imageID={this.props.imageID}

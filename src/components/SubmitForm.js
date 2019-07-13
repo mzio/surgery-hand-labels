@@ -146,16 +146,20 @@ export default class SubmitForm extends Component {
     return (
       <Card>
         <Card.Body>
-          {this.displayTasks()}
+          {/* {this.displayTasks()} */}
           <Card.Title>
             <h2>Bounding Boxes</h2>
           </Card.Title>
           <Card.Text>
-            Please draw a box around <b>each</b> hand, trying to make it as
-            precise as possible and specifying whether it's a <b>left</b> or{" "}
-            <b>right</b> hand.
-            <br />
-            Hit <b>enter</b> to move on to the next image.
+            Click and drag to draw a box around <b>each</b> hand, paying
+            attention to which type of hand (<b>left</b> or <b>right</b>) is
+            being labeled. Press <b>L</b> and <b>R</b> to switch between the
+            two. Try to keep boxes as tight as possible, and hit <b>Enter</b> to
+            move on to the next image.
+            {/* Please draw a box around <b>each</b>{" "}
+            hand, trying to make it as precise as possible and specifying
+            whether it's a <b>left</b> or <b>right</b> hand. */}
+            {/* <br /> */}
           </Card.Text>
           {/* <form
             // id="submitForm"

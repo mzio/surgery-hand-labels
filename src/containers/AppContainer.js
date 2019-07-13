@@ -68,6 +68,7 @@ export default class AppContainer extends Component {
         keypoints={this.state.keypoints}
         imageID={this.state.imageID}
         lastLabeled={this.state.lastLabeled}
+        // showHeader={true}
       />
     );
   }
