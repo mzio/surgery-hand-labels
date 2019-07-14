@@ -295,14 +295,13 @@ class LabelView extends Component {
               {/* <div id="Middle"> */}
               {this.props.showSidePanel && (
                 <div id="SidePanel">
-                  <InfoPanel />
-                  {/* <KeypointPanel
+                  {/* <InfoPanel /> */}
+                  <KeypointPanel
                     image={
                       this.props.keypointImages[this.state.keypointImageIndex]
                     }
                     ix={this.state.keypointImageIndex}
-                  /> */}
-                  {/* <SubmitButtonContainer /> */}
+                  />
                 </div>
               )}
               <div style={{ clear: "both" }} />
