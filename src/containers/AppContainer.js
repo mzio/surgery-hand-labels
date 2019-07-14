@@ -13,6 +13,10 @@ const images = importAll(
   require.context("../images", false, /\.(png|jpe?g|svg)$/)
 );
 
+const keypoints = importAll(
+  require.context("../keypoints", false, /\.(png|jpe?g|svg)$/)
+);
+
 export default class AppContainer extends Component {
   constructor(props) {
     super(props);
@@ -68,6 +72,7 @@ export default class AppContainer extends Component {
         keypoints={this.state.keypoints}
         imageID={this.state.imageID}
         lastLabeled={this.state.lastLabeled}
+        keypointImages={keypoints}
         // showHeader={true}
       />
     );

@@ -3,6 +3,7 @@ import BoundingBoxes from "./BoundingBoxes";
 import ImageContainer from "../containers/ImageContainer";
 import Crosshair from "../components/Crosshair";
 import InfoPanel from "../components/InfoPanel";
+import KeypointPanel from "../components/KeypointPanel";
 import SubmitForm from "../components/SubmitForm";
 import Header from "../components/Header";
 import { calculateRectPosition, isRectangleTooSmall } from "../utils/drawing";
@@ -35,6 +36,7 @@ class LabelView extends Component {
     this.refreshDrawing = this.refreshDrawing.bind(this);
     this.isCrosshairReady = this.isCrosshairReady.bind(this);
     this.loadBoxes = this.loadBoxes.bind(this);
+    this.getKeypointImage = this.getKeypointImage.bind(this);
 
     this.state = {
       isDrawing: false,
@@ -46,7 +48,8 @@ class LabelView extends Component {
       imgLoaded: false,
       imageUrl: null,
       showCrosshair: true,
-      submit: false
+      submit: false,
+      keypointImageIndex: 0
     };
   }
 
@@ -71,6 +74,20 @@ class LabelView extends Component {
       currX: this.state.currX,
       currY: this.state.currY
     };
+  }
+
+  getKeypointImage(increase) {
+    function mod(n, m) {
+      return ((n % m) + m) % m;
+    }
+    var ix = this.state.keypointImageIndex;
+    if (increase) {
+      ix = mod(ix + 1, 21);
+    } else {
+      ix = mod(ix - 1, 21);
+    }
+    console.log(ix);
+    this.setState({ keypointImageIndex: ix });
   }
 
   loadBoxes() {
@@ -116,7 +133,22 @@ class LabelView extends Component {
         console.log("You just pressed Enter!");
         this.setState({ submit: true });
         break;
-
+      case 37:
+        console.log("left arrow");
+        this.getKeypointImage(false);
+        break;
+      case 39:
+        console.log("right arrow");
+        this.getKeypointImage(true);
+        break;
+      case 65:
+        console.log("a (left)");
+        this.getKeypointImage(false);
+        break;
+      case 68:
+        console.log("d (right)");
+        this.getKeypointImage(true);
+        break;
       default:
         break;
     }
@@ -264,6 +296,12 @@ class LabelView extends Component {
               {this.props.showSidePanel && (
                 <div id="SidePanel">
                   <InfoPanel />
+                  {/* <KeypointPanel
+                    image={
+                      this.props.keypointImages[this.state.keypointImageIndex]
+                    }
+                    ix={this.state.keypointImageIndex}
+                  /> */}
                   {/* <SubmitButtonContainer /> */}
                 </div>
               )}
