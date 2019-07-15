@@ -14,6 +14,7 @@ export default class SubmitButton extends Component {
     this.getSubmissionUrl = this.getSubmissionUrl.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.getNormalizedBoxes = this.getNormalizedBoxes.bind(this);
+    this.getNormalizedKeypoints = this.getNormalizedKeypoints.bind(this);
     this.normalizePosition = this.normalizePosition.bind(this);
     this.parsed = queryString.parse(this.props.location.search);
   }
@@ -30,30 +31,87 @@ export default class SubmitButton extends Component {
   getNormalizedBoxes() {
     const normalizedBoxes = [];
     for (var key in this.props.boundingBoxes) {
-      const bbox = this.props.boundingBoxes[key].position;
-      const hand = this.props.boundingBoxes[key].hand;
-      const id = this.props.boundingBoxes[key].id;
-      const normalizedBox = this.normalizePosition(bbox);
-      normalizedBoxes.push({ id: id, bbox: normalizedBox, hand: hand });
+      const box = this.props.boundingBoxes[key].position;
+      const normalizedBox = this.normalizePosition(box, true);
+      normalizedBoxes.push(normalizedBox);
     }
     return normalizedBoxes;
   }
 
-  normalizePosition(position) {
-    const { top, left, width, height } = position;
-    // console.log(top, left, width, height);
-    const normalizedPosition = {
-      top: top / this.props.imageHeight,
-      left: left / this.props.imageWidth,
-      width: width / this.props.imageWidth,
-      height: height / this.props.imageHeight
-    };
-    // round to 2 decimal places
-    for (var key in normalizedPosition) {
-      normalizedPosition[key] = normalizedPosition[key].toFixed(5);
+  getNormalizedKeypoints() {
+    const normalizedKeypoints = [];
+    for (var key in this.props.keypoints) {
+      const keypoint = this.props.keypoints[key].position;
+      var normalizedKeypoint = this.props.keypoints[key];
+      normalizedKeypoint.position = this.normalizePosition(keypoint, false);
+      normalizedKeypoints.push(normalizedKeypoint);
     }
-    // console.log(normalizedPosition);
-    return normalizedPosition;
+    return normalizedKeypoints;
+  }
+
+  // Organize array of keypoints into hand objects
+  getKeypointHandData(keypoints) {
+    var hands = [];
+    var handIds = [];
+    for (var i = 0; i < keypoints.length; i++) {
+      const keypoint = keypoints[i];
+      if (handIds.includes(keypoint.handId)) {
+        var hand = hands[keypoint.handId];
+        const keypointPosition = keypoint.position;
+        hand.keypoints[keypoint.keypointIndex] = {
+          keypointPosition,
+          occluded: keypoint.occluded
+        };
+      } else {
+        handIds.push(keypoint.handId);
+        var hand = {
+          handId: keypoint.handId,
+          keypoints: new Array(21).fill(null),
+          hand: keypoint.hand
+        };
+        const keypointPosition = keypoint.position;
+        hand.keypoints[keypoint.keypointIndex] = {
+          keypointPosition,
+          occluded: keypoint.occluded
+        };
+        hands.push(hand);
+      }
+    }
+  }
+
+  getImageDimensions() {
+    return [this.props.imageWidth, this.props.imageHeight];
+  }
+
+  normalizePosition(position, box) {
+    if (box) {
+      const { top, left, width, height } = position;
+      // console.log(top, left, width, height);
+      const normalizedPosition = {
+        top: top / this.props.imageHeight,
+        left: left / this.props.imageWidth,
+        width: width / this.props.imageWidth,
+        height: height / this.props.imageHeight
+      };
+      // round to 5 decimal places
+      for (var key in normalizedPosition) {
+        normalizedPosition[key] = normalizedPosition[key].toFixed(5);
+      }
+      // console.log(normalizedPosition);
+      return normalizedPosition;
+    } else {
+      const { top, left } = position;
+      const normalizedPosition = {
+        top: top / this.props.imageHeight,
+        left: left / this.props.imageWidth
+      };
+      // round to 5 decimal places
+      for (var key in normalizedPosition) {
+        normalizedPosition[key] = normalizedPosition[key].toFixed(5);
+      }
+      // console.log(normalizedPosition);
+      return normalizedPosition;
+    }
   }
 
   handleSubmit(e) {
