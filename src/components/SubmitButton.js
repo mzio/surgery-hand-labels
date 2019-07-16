@@ -57,9 +57,8 @@ export default class SubmitButton extends Component {
       const keypoint = keypoints[i];
       if (handIds.includes(keypoint.handId)) {
         var hand = hands[keypoint.handId];
-        const keypointPosition = keypoint.position;
         hand.keypoints[keypoint.keypointIndex] = {
-          keypointPosition,
+          position: keypoint.position,
           occluded: keypoint.occluded
         };
       } else {
@@ -69,14 +68,14 @@ export default class SubmitButton extends Component {
           keypoints: new Array(21).fill(null),
           hand: keypoint.hand
         };
-        const keypointPosition = keypoint.position;
         hand.keypoints[keypoint.keypointIndex] = {
-          keypointPosition,
+          position: keypoint.position,
           occluded: keypoint.occluded
         };
         hands.push(hand);
       }
     }
+    return hands;
   }
 
   getImageDimensions() {
@@ -123,32 +122,42 @@ export default class SubmitButton extends Component {
     // HTMLFormElement.prototype.submit.call(form);
   }
 
-  submitTask() {
-    // e.preventDefault();
+  submitTask(mode) {
+    // box if bounding box mode
     const labelIndex = config["submit"][env] + "/labeled_index";
     const imagePath = config["submit"][env] + "/" + this.props.imageID;
-    axios
-      .put(imagePath, {
-        labels: this.getNormalizedBoxes(),
-        labeled: true
-      })
-      .then(res => {
-        console.log(res);
-        axios.put(labelIndex, { last_labeled: this.props.lastLabeled + 1 });
-      });
 
-    // axios.get(label_index).then(function(res) {
-    //   console.log(res.data);
-    // });
-    // console.log("POSTing data");
-    // axios
-    //   .put(`${this.getSubmissionUrl()}`, {})
-    //   .then(function(response) {
-    //     console.log(response);
-    //   })
-    //   .catch(function(error) {
-    //     console.log(error);
-    //   });
+    axios.get(labelIndex).then(res => {
+      var lastBoundingBox = res.data.last_labeled_bounding_box;
+      var lastKeypoint = res.data.last_labeled_keypoint;
+      axios.get(imagePath).then(res => {
+        var data = res.data;
+        if (mode == "keypoints") {
+          data.labels.keypoints = this.getKeypointHandData(
+            this.getNormalizedKeypoints()
+          );
+          data.image_dimensions.keypoints = this.getImageDimensions();
+          console.log(data);
+          axios.put(imagePath, data).then(res => {
+            console.log(res);
+            axios.put(labelIndex, {
+              last_labeled_bounding_box: lastBoundingBox,
+              last_labeled_keypoint: lastKeypoint + 1
+            });
+          });
+        } else {
+          data.labels.bounding_boxes = this.getNormalizedBoxes();
+          data.image_dimensions.bounding_boxes = this.getImageDimensions();
+          axios.put(imagePath, data).then(res => {
+            console.log(res);
+            axios.put(labelIndex, {
+              last_labeled_bounding_box: lastBoundingBox + 1,
+              last_labeled_keypoint: lastKeypoint
+            });
+          });
+        }
+      });
+    });
   }
 
   createInputElement() {
@@ -186,8 +195,6 @@ export default class SubmitButton extends Component {
 
   getSubmissionUrl() {
     const url = config["submit"][env] + "/" + this.props.imageID;
-    // const url =
-    //   config["submit"][env] + "/?assignmentId=" + this.parsed.assignmentId;
     console.log(url);
     return url;
   }
@@ -195,7 +202,8 @@ export default class SubmitButton extends Component {
   render() {
     const inputElement = this.createInputElement();
     if (this.props.submit) {
-      this.submitTask();
+      console.log(this.props.mode);
+      this.submitTask(this.props.mode);
     }
 
     if (this.props.show) {
