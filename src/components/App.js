@@ -62,6 +62,7 @@ class App extends Component {
           lastLabeled={this.props.lastLabeled}
           keypointImages={this.props.keypointImages}
           modeKeypoints={this.props.modeKeypoints}
+          finished={this.props.finished}
         />
       </div>
     );
