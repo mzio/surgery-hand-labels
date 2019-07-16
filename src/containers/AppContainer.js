@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import App from "../components/App";
-// import config from "../config";
+import config from "../config";
 import queryString from "qs";
 import data from "../data";
 
@@ -44,7 +44,12 @@ export default class AppContainer extends Component {
     axios
       .get("http://localhost:3001/data")
       .then(res => {
-        var lastLabeled = res.data[0].last_labeled;
+        var lastLabeled;
+        if (config.keypoints) {
+          lastLabeled = res.data[0].last_labeled_keypoint;
+        } else {
+          lastLabeled = res.data[0].last_labeled_bounding_box;
+        }
         var start_ix = lastLabeled + 1;
         var res_ix = start_ix + 1;
         this.setState({
@@ -61,7 +66,11 @@ export default class AppContainer extends Component {
   }
 
   render() {
-    var start_ix = data.data[0].last_labeled + 2;
+    if (config.keypoints) {
+      var start_ix = data.data[0].last_labeled_keypoint + 2;
+    } else {
+      var start_ix = data.data[0].last_labeled_bounding_box + 2;
+    }
     var progress = Math.round(((start_ix - 1) / (data.data.length - 1)) * 100);
 
     return (
@@ -73,6 +82,7 @@ export default class AppContainer extends Component {
         imageID={this.state.imageID}
         lastLabeled={this.state.lastLabeled}
         keypointImages={keypoints}
+        modeKeypoints={config.keypoints}
         // showHeader={true}
       />
     );

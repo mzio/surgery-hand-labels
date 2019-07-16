@@ -1,7 +1,8 @@
 import { connect } from "react-redux";
 import { ActionCreators as UndoActionCreators } from "redux-undo";
 import LabelView from "../components/LabelView";
-import { addBox } from "../actions";
+import { addBox, addKeypoint } from "../actions";
+import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from "constants";
 
 // convert JSON key-value pairs of boxes to Array
 const preprocess = boxes => {
@@ -13,13 +14,19 @@ const preprocess = boxes => {
 
 const mapStateToProps = (state, ownProps) => {
   const committedBoxesArray = preprocess(state.turktool.committedBoxes.present);
+  const committedKeypointsArray = preprocess(
+    state.turktool.committedKeypoints.present
+  );
   // console.log(committedBoxesArray);
   return {
     committedBoxes: committedBoxesArray,
+    committedKeypoints: committedKeypointsArray,
     imageURL: ownProps.imageURL,
     imageProps: state.turktool.imageProps,
     canUndo: state.turktool.committedBoxes.past.length > 0,
     canRedo: state.turktool.committedBoxes.future.length > 0,
+    canUndoKeypoint: state.turktool.committedKeypoints.past.length > 0,
+    canRedoKeypoint: state.turktool.committedKeypoints.future.length > 0,
     taskId: ownProps.taskId,
     hand: ownProps.hand
   };
@@ -30,8 +37,22 @@ const mapDispatchToProps = dispatch => {
     commitDrawingAsBox: (id, position, hand) => {
       dispatch(addBox(id, position, hand));
     },
+    commitDrawingAsKeypoint: (
+      id,
+      position,
+      hand,
+      handId,
+      keypointIndex,
+      occluded
+    ) => {
+      dispatch(
+        addKeypoint(id, position, hand, handId, keypointIndex, occluded)
+      );
+    },
     onUndo: () => dispatch(UndoActionCreators.undo()),
-    onRedo: () => dispatch(UndoActionCreators.redo())
+    onRedo: () => dispatch(UndoActionCreators.redo()),
+    onUndoKeypoint: () => dispatch(UndoActionCreators.undo()),
+    onRedoKeypoint: () => dispatch(UndoActionCreators.redo())
   };
 };
 
