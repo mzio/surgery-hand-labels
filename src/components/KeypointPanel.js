@@ -27,6 +27,14 @@ export default class KeypointPanel extends Component {
     this.state.leftHand = !this.state.leftHand;
   }
 
+  getKeypointLabel() {
+    if (this.props.ix !== 21) {
+      return <h3>Keypoint {this.props.ix}</h3>;
+    } else {
+      return <h3>Almost done! 👏</h3>;
+    }
+  }
+
   render() {
     // console.log(this.props.hand);
     return (
@@ -40,7 +48,7 @@ export default class KeypointPanel extends Component {
           />
           <Card.Body style={{ padding: "10px 0 0 0" }}>
             <Card.Title style={{ textAlign: "center" }}>
-              <h3>Keypoint {this.props.ix}</h3>
+              {this.getKeypointLabel()}
             </Card.Title>
           </Card.Body>
 
