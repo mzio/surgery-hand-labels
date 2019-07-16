@@ -12,7 +12,8 @@ const keypoints = (state = {}, action) => {
           position: action.position, // coordinates
           hand: action.hand, // left or right
           handId: action.handId, // hand that it belongs to
-          keypointIndex: action.keypointIndex // 0 - 20
+          keypointIndex: action.keypointIndex, // 0 - 20
+          occluded: action.occluded
         }
       };
 
@@ -37,7 +38,8 @@ const keypoints = (state = {}, action) => {
             position: action.position,
             hand: action.hand, // left or right
             handId: action.handId, // hand that it belongs to
-            keypointIndex: action.keypointIndex // 0 - 20
+            keypointIndex: action.keypointIndex, // 0 - 20
+            occluded: action.occluded
           };
         } else {
           result[key] = state[key];

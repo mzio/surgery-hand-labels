@@ -29,14 +29,22 @@ export const updateBox = (id, position) => {
 };
 
 // Keypoints
-export const addKeypoint = (id, position, hand, handId, keypointIndex) => {
+export const addKeypoint = (
+  id,
+  position,
+  hand,
+  handId,
+  keypointIndex,
+  occluded
+) => {
   return {
     type: "ADD_KEYPOINT",
     id: id,
     position,
     hand: hand,
     handId: handId,
-    keypointIndex: keypointIndex
+    keypointIndex: keypointIndex,
+    occluded: occluded
   };
 };
 
@@ -47,14 +55,22 @@ export const deleteKeypoint = id => {
   };
 };
 
-export const updateKeypoint = (id, position, hand, handId, keypointIndex) => {
+export const updateKeypoint = (
+  id,
+  position,
+  hand,
+  handId,
+  keypointIndex,
+  occluded
+) => {
   return {
     type: "UPDATE_KEYPOINT",
     id: id,
     position,
     hand: hand,
     handId: handId,
-    keypointIndex: keypointIndex
+    keypointIndex: keypointIndex,
+    occluded: occluded
   };
 };
 
