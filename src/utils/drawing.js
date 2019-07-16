@@ -3,29 +3,17 @@
  * to render a rectangle on the screen.
  * @param {Object} imgProps Image properties, including the img
  *  element's `offsetX`, `offsetY`, `height` and `width`.
- * @param {Object} rawBoxCoords Box coordinates of  `startX`, `startY`, 
+ * @param {Object} rawBoxCoords Box coordinates of  `startX`, `startY`,
  *  currX`, and `currY`
  */
 export function calculateRectPosition(imgProps, rawBoxCoords) {
-  var left = Math.min(
-    rawBoxCoords.startX,
-    rawBoxCoords.currX
-  );
-  var top = Math.min(
-    rawBoxCoords.startY,
-    rawBoxCoords.currY
-  );
-  var right = Math.max(
-    rawBoxCoords.startX,
-    rawBoxCoords.currX
-  );
-  var bottom = Math.max(
-    rawBoxCoords.startY,
-    rawBoxCoords.currY
-  );
-  
+  var left = Math.min(rawBoxCoords.startX, rawBoxCoords.currX);
+  var top = Math.min(rawBoxCoords.startY, rawBoxCoords.currY);
+  var right = Math.max(rawBoxCoords.startX, rawBoxCoords.currX);
+  var bottom = Math.max(rawBoxCoords.startY, rawBoxCoords.currY);
+
   // width of div border
-  const DIV_BORDER = 4
+  const DIV_BORDER = 4;
   const width = imgProps.width - DIV_BORDER;
   const height = imgProps.height - DIV_BORDER;
 
@@ -52,4 +40,25 @@ export function calculateRectPosition(imgProps, rawBoxCoords) {
 export function isRectangleTooSmall(position) {
   if (position.width < 10 || position.height < 10) return true;
   return false;
+}
+
+// Calculate keypoint position
+export function calculateKeypointPosition(imgProps, rawBoxCoords) {
+  var left = Math.min(rawBoxCoords.startX);
+  var top = Math.min(rawBoxCoords.startY);
+
+  // width of div border
+  const DIV_BORDER = 4;
+  const width = imgProps.width - DIV_BORDER;
+  const height = imgProps.height - DIV_BORDER;
+
+  // limit keypoints to the size of the image
+  // so user can't place keypoints out of image
+  left = Math.max(imgProps.offsetX, left);
+  top = Math.max(imgProps.offsetY, top);
+
+  return {
+    left: left - imgProps.offsetX,
+    top: top - imgProps.offsetY
+  };
 }

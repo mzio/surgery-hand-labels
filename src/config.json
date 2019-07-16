@@ -3,5 +3,6 @@
     "production": "http://localhost:3001/data",
     "development": "http://localhost:3001/data"
   },
-  "server": null
+  "server": null,
+  "keypoints": true
 }

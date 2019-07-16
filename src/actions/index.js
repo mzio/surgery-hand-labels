@@ -1,3 +1,4 @@
+// Bounding Boxes
 export const addBox = (id, position, hand) => {
   return {
     type: "ADD_BOX",
@@ -24,6 +25,52 @@ export const updateBox = (id, position) => {
     type: "UPDATE_BOX",
     id: id,
     position
+  };
+};
+
+// Keypoints
+export const addKeypoint = (
+  id,
+  position,
+  hand,
+  handId,
+  keypointIndex,
+  occluded
+) => {
+  return {
+    type: "ADD_KEYPOINT",
+    id: id,
+    position,
+    hand: hand,
+    handId: handId,
+    keypointIndex: keypointIndex,
+    occluded: occluded
+  };
+};
+
+export const deleteKeypoint = id => {
+  return {
+    type: "DELETE_KEYPOINT",
+    id: id
+  };
+};
+
+export const updateKeypoint = (
+  id,
+  position,
+  hand,
+  handId,
+  keypointIndex,
+  occluded
+) => {
+  return {
+    type: "UPDATE_KEYPOINT",
+    id: id,
+    position,
+    hand: hand,
+    handId: handId,
+    keypointIndex: keypointIndex,
+    occluded: occluded
   };
 };
 

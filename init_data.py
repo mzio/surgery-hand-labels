@@ -21,10 +21,16 @@ def create_image_object(name, path, ix, keypoint=False):
     return {'id': ix,
             'name': name,
             'path': path,
-            'labels': [],
+            'labels': {
+                'bounding_boxes': [],
+                'keypoints': []
+            },
             'keypoints': keypoint,
             'annotator_id': '',
-            'labeled': False}
+            'image_dimensions': {  # May be redundant
+                'bounding_boxes': [],
+                'keypoints': []
+            }}
 
 
 if __name__ == "__main__":
@@ -50,7 +56,9 @@ if __name__ == "__main__":
 
     image_path = args.path
 
-    data = {'data': [{'id': "labeled_index", 'last_labeled': -1}]}
+    data = {'data': [{'id': "labeled_index",
+                      'last_labeled_bounding_box': -1,
+                      'last_labeled_keypoint': -1}]}
     start_ix = args.index
     for ix, image in enumerate(images):
         name = image  # for now just keep original image name

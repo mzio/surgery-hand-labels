@@ -9,7 +9,7 @@ class App extends Component {
     this.props = props;
     this.toggleHand = this.toggleHand.bind(this);
     this.state = {
-      hand: "left",
+      hand: "right",
       keypoint: 0
     };
   }
@@ -32,6 +32,7 @@ class App extends Component {
         } else if (this.state.hand == "left") {
           this.setState({ hand: "right" });
         }
+        // console.log(this.state.hand);
         // this.setState({ hand: "left" });
         break;
       case 82:
@@ -42,6 +43,7 @@ class App extends Component {
           this.setState({ hand: "left" });
         }
         // this.setState({ hand: "right" });
+        // console.log(this.state.hand);
         break;
     }
   }
@@ -59,6 +61,7 @@ class App extends Component {
           hand={this.state.hand}
           lastLabeled={this.props.lastLabeled}
           keypointImages={this.props.keypointImages}
+          modeKeypoints={this.props.modeKeypoints}
         />
       </div>
     );
