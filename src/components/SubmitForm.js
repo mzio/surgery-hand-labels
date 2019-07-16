@@ -100,11 +100,11 @@ export default class SubmitForm extends Component {
                 Click on the image above to place a keypoint label, using the
                 diagram for reference. For occluded keypoints, press <b>O</b> to
                 toggle and try to label where the point would have been in the
-                image. Undo with <b>Z</b>, and redo with <b>X</b>. For each
-                hand, only label a specific keypoint <b>once</b>. Use the arrow
-                keys or <b>A</b> / <b>D</b> to switch between keypoints. Press{" "}
-                <b>C</b> to toggle crosshairs. After all points are labeled, hit{" "}
-                <b>Enter</b>.
+                image. Undo with <b>Z</b>, and redo with <b>X</b>. For each new
+                hand, you'll only be able to label a specific keypoint{" "}
+                <b>once</b>. Use the arrow keys or <b>A</b> / <b>D</b> to switch
+                between keypoints. Press <b>C</b> to toggle crosshairs. After
+                all points are labeled, hit <b>Enter</b>.
               </Card.Text>
             </Card.Body>
           </Card>
