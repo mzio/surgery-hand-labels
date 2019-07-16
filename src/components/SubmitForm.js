@@ -12,71 +12,8 @@ export default class SubmitForm extends Component {
   constructor(props) {
     super(props);
     this.props = props;
-    this.submitTask = this.submitTask.bind(this);
-    this.getSubmissionUrl = this.getSubmissionUrl.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.getNormalizedBoxes = this.getNormalizedBoxes.bind(this);
-    this.normalizePosition = this.normalizePosition.bind(this);
     this.displayTasks = this.displayTasks.bind(this);
-    // this.parsed = queryString.parse(this.props.location.search);
-  }
-
-  hasAcceptedTask() {
-    return true;
-    if (this.parsed.assignmentId === undefined) return false;
-    return this.parsed.assignmentId !== "ASSIGNMENT_ID_NOT_AVAILABLE";
-  }
-
-  /*
-   * Return an Array of normalized box positions. (no id)
-   */
-  getNormalizedBoxes() {
-    const normalizedBoxes = [];
-    for (var key in this.props.boundingBoxes) {
-      const box = this.props.boundingBoxes[key].position;
-      const normalizedBox = this.normalizePosition(box);
-      normalizedBoxes.push(normalizedBox);
-    }
-    return normalizedBoxes;
-  }
-
-  normalizePosition(position) {
-    const { top, left, width, height } = position;
-    // console.log(top, left, width, height);
-    const normalizedPosition = {
-      top: top / this.props.imageHeight,
-      left: left / this.props.imageWidth,
-      width: width / this.props.imageWidth,
-      height: height / this.props.imageHeight
-    };
-    // round to 2 decimal places
-    for (var key in normalizedPosition) {
-      normalizedPosition[key] = normalizedPosition[key].toFixed(5);
-    }
-    // console.log(normalizedPosition);
-    return normalizedPosition;
-  }
-
-  handleSubmit(e) {
-    // e.preventDefault();
-    // const input = document.getElementById("submitButton");
-    // input.setAttribute("value", JSON.stringify(this.getNormalizedBoxes()));
-    // console.log(input);
-    // const form = document.getElementById("submitForm");
-    // HTMLFormElement.prototype.submit.call(form);
-  }
-
-  submitTask(e) {
-    // // e.preventDefault();
-    // console.log("POSTing data");
-    // axios
-    //   .post(`${this.getSubmissionUrl()}`, {})
-    //   .then(function(response) {
-    //     console.log(response);
-    //   })
-    //   .catch(function(error) {
-    //     console.log(error);
-    //   });
+    this.renderTaskCard = this.renderTaskCard.bind(this);
   }
 
   displayTasks() {
@@ -133,120 +70,110 @@ export default class SubmitForm extends Component {
     }
   }
 
-  getSubmissionUrl() {
-    // const url = config["submit"][env] + "/" + this.props.imageID;
-    // // const url =
-    // //   config["submit"][env] + "/?assignmentId=" + this.parsed.assignmentId;
-    // console.log(url);
-    // return url;
-    // return url;
+  renderTaskCard() {
+    if (this.props.keypoints) {
+      if (this.props.keypointState == "New Hand") {
+        return (
+          <Card>
+            <Card.Body>
+              {/* {this.displayTasks()} */}
+              <Card.Title>
+                <h2>Select a hand type 🙌</h2>
+              </Card.Title>
+              <Card.Text>
+                Press either <b>R</b> or <b>L</b> to toggle between right or
+                left hand labeling. When the correct hand type is specified, hit{" "}
+                <b>Enter</b>.
+              </Card.Text>
+            </Card.Body>
+          </Card>
+        );
+      } else if (this.props.keypointState == "Labeling") {
+        return (
+          <Card>
+            <Card.Body>
+              {/* {this.displayTasks()} */}
+              <Card.Title>
+                <h2>Keypoint Labeling ✍🔥</h2>
+              </Card.Title>
+              <Card.Text>
+                Click on the image above to place a keypoint label, using the
+                diagram for reference. For occluded keypoints, press <b>O</b> to
+                toggle and try to label where the point would have been in the
+                image. Undo with <b>Z</b>, and redo with <b>X</b>. For each
+                hand, only label a specific keypoint <b>once</b>. Use the arrow
+                keys or <b>A</b> / <b>D</b> to switch between keypoints. Press{" "}
+                <b>C</b> to toggle crosshairs. After all points are labeled, hit{" "}
+                <b>Enter</b>.
+              </Card.Text>
+            </Card.Body>
+          </Card>
+        );
+      } else {
+        // Review
+        return (
+          <Card>
+            <Card.Body>
+              {/* {this.displayTasks()} */}
+              <Card.Title>
+                <h2>Review 👌💯</h2>
+              </Card.Title>
+              <Card.Text>
+                If you're happy with all the keypoints labeled for the current
+                hand, press <b>N</b> to begin another hand, or <b>Enter</b> to
+                submit labels. If you'd like to go back and modify previous
+                annotations, hit <b>Backspace</b>.
+              </Card.Text>
+              <Form id="submitForm" style={{ height: "0px" }}>
+                <fieldset>
+                  <SubmitButtonContainer
+                    action="submit"
+                    imageID={this.props.imageID}
+                    lastLabeled={this.props.lastLabeled}
+                    submit={this.props.submit}
+                    show={this.props.show}
+                    mode="keypoints"
+                  />
+                </fieldset>
+              </Form>
+            </Card.Body>
+          </Card>
+        );
+      }
+    } else {
+      return (
+        <Card>
+          <Card.Body>
+            {/* {this.displayTasks()} */}
+            <Card.Title>
+              <h2>Bounding Boxes</h2>
+            </Card.Title>
+            <Card.Text>
+              Click and drag to draw a box around <b>each</b> hand, paying
+              attention to which type of hand (<b>left</b> or <b>right</b>) is
+              being labeled. Press <b>L</b> and <b>R</b> to switch between the
+              two. Try to keep boxes as tight as possible, and hit <b>Enter</b>{" "}
+              to move on to the next image.
+            </Card.Text>
+            <Form id="submitForm" style={{ height: "0px" }}>
+              <fieldset>
+                <SubmitButtonContainer
+                  action="submit"
+                  imageID={this.props.imageID}
+                  lastLabeled={this.props.lastLabeled}
+                  submit={this.props.submit}
+                  show={this.props.show}
+                  mode="boundingBoxes"
+                />
+              </fieldset>
+            </Form>
+          </Card.Body>
+        </Card>
+      );
+    }
   }
 
   render() {
-    return (
-      <Card>
-        <Card.Body>
-          {/* {this.displayTasks()} */}
-          <Card.Title>
-            <h2>Bounding Boxes</h2>
-          </Card.Title>
-          <Card.Text>
-            Click and drag to draw a box around <b>each</b> hand, paying
-            attention to which type of hand (<b>left</b> or <b>right</b>) is
-            being labeled. Press <b>L</b> and <b>R</b> to switch between the
-            two. Try to keep boxes as tight as possible, and hit <b>Enter</b> to
-            move on to the next image.
-            {/* Please draw a box around <b>each</b>{" "}
-            hand, trying to make it as precise as possible and specifying
-            whether it's a <b>left</b> or <b>right</b> hand. */}
-            {/* <br /> */}
-          </Card.Text>
-          {/* <form
-            // id="submitForm"
-            type="submit"
-            method="POST"
-            action={this.getSubmissionUrl()}
-          > */}
-          <Form id="submitForm" style={{ height: "0px" }}>
-            <fieldset>
-              <Form.Group>
-                {/* <Form.Label as={Row}>
-                  <h3>Handedness</h3>
-                </Form.Label>
-
-                <Row>
-                  <Form.Control as="select">
-                    <option>Left</option>
-                    <option>Right</option>
-                    <option>None</option>
-                  </Form.Control>
-                  <Form.Text className="text-muted">
-                    Select left, right, or none.
-                  </Form.Text>
-                </Row> */}
-
-                {/* <Col sm={1}>
-                  <Form.Check
-                    type="radio"
-                    label="Left"
-                    name="formHorizontalRadios"
-                    id="formHorizontalRadios1"
-                  />
-                </Col>
-                <Col sm={1}>
-                  <Form.Check
-                    type="radio"
-                    label="Right"
-                    name="formHorizontalRadios"
-                    id="formHorizontalRadios2"
-                  />
-                </Col>
-                <Col sm={3}>
-                  <Form.Check
-                    type="radio"
-                    label="No hands"
-                    name="formHorizontalRadios"
-                    id="formHorizontalRadios2"
-                  />
-                </Col> */}
-              </Form.Group>
-              <SubmitButtonContainer
-                action="submit"
-                imageID={this.props.imageID}
-                lastLabeled={this.props.lastLabeled}
-                submit={this.props.submit}
-                show={this.props.show}
-              />
-              {/* <ButtonGroup>
-                <SubmitButtonContainer action="save" />
-                
-              </ButtonGroup> */}
-            </fieldset>
-            {/* <Form.Group as={Row}>
-                      <Col sm={{ span: 10, offset: 2 }}>
-                        <Button type="submit">Sign in</Button>
-                      </Col>
-                    </Form.Group> */}
-          </Form>
-          {/* </form> */}
-          {/* <Card.Link href="#">Card Link</Card.Link>
-                  <Card.Link href="#">Another Link</Card.Link> */}
-        </Card.Body>
-      </Card>
-    );
-    // const inputElement = this.createInputElement();
-
-    // return (
-    //   <div id="Submit">
-    //     {/* <form
-    //       id="submitForm"
-    //       type="submit"
-    //       method="POST"
-    //       action={this.getSubmissionUrl()}
-    //     > */}
-    //     {inputElement}
-    //     {/* </form> */}
-    //   </div>
-    // );
+    return this.renderTaskCard();
   }
 }
