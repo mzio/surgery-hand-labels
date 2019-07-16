@@ -35,6 +35,8 @@ To switch to keypoints, in `/src/config.json`, simply change `"keypoints": false
 | :--------------------------: | :------------------------------: |
 | ![](demo-pics/demo-bbox.png) | ![](demo-pics/demo-keypoint.png) |
 
+![](demo-pics/demo-keypoint.png)
+
 ## Todos
 
 Fundamentals:
