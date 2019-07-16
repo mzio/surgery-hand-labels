@@ -6,12 +6,13 @@ import Crosshair from "../components/Crosshair";
 import InfoPanel from "../components/InfoPanel";
 import KeypointPanel from "../components/KeypointPanel";
 import SubmitForm from "../components/SubmitForm";
-import Header from "../components/Header";
-import { calculateRectPosition, isRectangleTooSmall } from "../utils/drawing";
-import { calculateKeypointPosition } from "../utils/drawing";
+import {
+  calculateRectPosition,
+  isRectangleTooSmall,
+  calculateKeypointPosition
+} from "../utils/drawing";
 
-// import SubmitButtonContainer from "../containers/SubmitButtonContainer";
-import { Container, Row, Col, ProgressBar } from "react-bootstrap";
+import { Container, Row, Col, ProgressBar, Modal } from "react-bootstrap";
 
 /**
  * `LabelView` is a container for `LabelImage` and
@@ -463,6 +464,33 @@ class LabelView extends Component {
     }
   }
 
+  renderFinished() {
+    console.log(this.props.finished);
+    var task = this.state.keypoints ? "keypoints" : "bounding boxes";
+    var otherTask = this.state.keypoints ? "bounding boxes" : "keypoints";
+    return (
+      <>
+        <Modal show={this.props.finished}>
+          <Modal.Header style={{ textAlign: "center", margin: "0 auto" }}>
+            <Modal.Title>
+              <h3>🙌 Labeling Complete! 🎉</h3>
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <p>
+              {" "}
+              Congrats, you finished annotating {task} on this batch of images!
+            </p>
+            <p>
+              Consider reconfiguring the app to label {otherTask} (if you
+              haven't done so already), or load more data.
+            </p>
+          </Modal.Body>
+        </Modal>
+      </>
+    );
+  }
+
   render() {
     // TODO: get committed rectangles from Redux store
     if (this.state.keypoints) {
@@ -511,27 +539,7 @@ class LabelView extends Component {
             </Col>
           </Row>
           <Row>
-            <Col sm={8}>
-              {this.renderLabels(thingsToRender)}
-              {/* <RenderLabels thingsToRender={thingsToRender} /> */}
-              {/* <div id="LabelView">
-                {this.state.showCrosshair && this.isCrosshairReady() && (
-                  <Crosshair
-                    x={this.state.currX}
-                    y={this.state.currY}
-                    imageProps={this.props.imageProps}
-                  />
-                )}
-                {boxesToRender.length > 0 && (
-                  <BoundingBoxes
-                    className="BoundingBoxes unselectable"
-                    boxes={boxesToRender}
-                    isDrawing={this.state.isDrawing}
-                  />
-                )}
-                <ImageContainer imageURL={this.props.imageURL} />
-              </div> */}
-            </Col>
+            <Col sm={8}>{this.renderLabels(thingsToRender)}</Col>
             <Col sm={4}>
               {/* <div id="Middle"> */}
               {this.props.showSidePanel && (
@@ -553,6 +561,7 @@ class LabelView extends Component {
             </Col>
             <Col sm={0} />
           </Row>
+          <Row>{this.renderFinished()}</Row>
           <Row>
             <Col>
               <SubmitForm

@@ -73,6 +73,9 @@ export default class AppContainer extends Component {
     }
     var progress = Math.round(((start_ix - 1) / (data.data.length - 1)) * 100);
 
+    var finished = progress >= 100 ? true : false;
+    // console.log(finished);
+
     return (
       <App
         imageURL={this.state.imageURL}
@@ -83,6 +86,7 @@ export default class AppContainer extends Component {
         lastLabeled={this.state.lastLabeled}
         keypointImages={keypoints}
         modeKeypoints={config.keypoints}
+        finished={finished}
         // showHeader={true}
       />
     );
