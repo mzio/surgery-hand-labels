@@ -2,6 +2,11 @@
 
 A minimal React app for bounding box and hand keypoint annotation of hands in surgical images.
 
+| :--------------------------: | :------------------------------: |
+| ![](demo-pics/demo-bbox.png) | ![](demo-pics/demo-keypoint.png) |
+
+![](demo-pics/demo-keypoint.png)
+
 Socially obligated to say this: this project was bootstrapped with `create-react-app`. For more info, see the original project [here](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
 After git cloning, install ~~all~~ most dependencies with: `cd surgery-labels && npm install .`
@@ -31,7 +36,6 @@ Besides the annotation mode, everything should be pre-configured to work out of 
 
 To switch to keypoints, in `/src/config.json`, simply change `"keypoints": false` to `"keypoints": true`.
 
-|        Bounding Boxes        |            Keypoints             |
 | :--------------------------: | :------------------------------: |
 | ![](demo-pics/demo-bbox.png) | ![](demo-pics/demo-keypoint.png) |
 
