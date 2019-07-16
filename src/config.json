@@ -4,5 +4,5 @@
     "development": "http://localhost:3001/data"
   },
   "server": null,
-  "keypoints": true
+  "keypoints": false
 }
