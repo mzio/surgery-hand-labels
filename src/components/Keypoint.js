@@ -78,7 +78,7 @@ export default class Keypoint extends Component {
         var keypointIndex = `(${keypointIndex})`;
       }
     } catch (e) {
-      console.log(this.props.keypoint);
+      //   console.log(this.props.keypoint);
     }
     return (
       <div
