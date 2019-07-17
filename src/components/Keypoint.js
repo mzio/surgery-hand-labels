@@ -59,10 +59,10 @@ export default class Keypoint extends Component {
       };
     } else {
       return {
-        top: "20%",
-        left: "20%",
-        width: "60%",
-        height: "60%",
+        top: "20%", // 25
+        left: "20%", // 25
+        width: "60%", // 50
+        height: "60%", // 50
         position: "absolute",
         borderRadius: "50%",
         backgroundColor: rgba,
@@ -92,7 +92,7 @@ export default class Keypoint extends Component {
           style={this.getStyle(
             true,
             this.getColor(true, this.props.keypoint.keypointIndex),
-            15
+            15 // 20
           )}
         >
           <div
