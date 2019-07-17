@@ -8,7 +8,7 @@ A minimal React app for bounding box and hand keypoint annotation of hands in su
 | :--------------------------: | :------------------------------: |
 | ![](demo-pics/demo-bbox.png) | ![](demo-pics/demo-keypoint.png) | -->
 
-Socially obligated to say this: this project was bootstrapped with `create-react-app`. For more info, see the original project [here](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md).
+Socially obligated to say this: this project was bootstrapped with `create-react-app`. For more info, see the original project [here](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md). Will gladly say that the initial version was forked from [turktool](https://github.com/jaxony/turktool).  
 
 ## Setup
 
@@ -64,5 +64,5 @@ Useful Features:
 Nice to have:
 
 - [ ] Enable switching between images
-- [ ] Display annotations on load
+- [x] Display (bounding box) annotations on load (in keypoint mode)  
 - [ ] Clear all labels key command
