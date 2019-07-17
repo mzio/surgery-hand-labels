@@ -17,9 +17,9 @@
       "annotator_id": "",
       "image_dimensions": {
         "bounding_boxes": [],
-        "keypoints": [],
-        "no_hands": false
-      }
+        "keypoints": []
+      },
+      "no_hands": false
     },
     {
       "id": 1,
@@ -33,9 +33,9 @@
       "annotator_id": "",
       "image_dimensions": {
         "bounding_boxes": [],
-        "keypoints": [],
-        "no_hands": false
-      }
+        "keypoints": []
+      },
+      "no_hands": false
     },
     {
       "id": 2,
@@ -49,9 +49,9 @@
       "annotator_id": "",
       "image_dimensions": {
         "bounding_boxes": [],
-        "keypoints": [],
-        "no_hands": false
-      }
+        "keypoints": []
+      },
+      "no_hands": false
     },
     {
       "id": 3,
@@ -65,9 +65,9 @@
       "annotator_id": "",
       "image_dimensions": {
         "bounding_boxes": [],
-        "keypoints": [],
-        "no_hands": false
-      }
+        "keypoints": []
+      },
+      "no_hands": false
     },
     {
       "id": 4,
@@ -81,9 +81,9 @@
       "annotator_id": "",
       "image_dimensions": {
         "bounding_boxes": [],
-        "keypoints": [],
-        "no_hands": false
-      }
+        "keypoints": []
+      },
+      "no_hands": false
     },
     {
       "id": 5,
@@ -97,9 +97,9 @@
       "annotator_id": "",
       "image_dimensions": {
         "bounding_boxes": [],
-        "keypoints": [],
-        "no_hands": false
-      }
+        "keypoints": []
+      },
+      "no_hands": false
     },
     {
       "id": 6,
@@ -113,9 +113,9 @@
       "annotator_id": "",
       "image_dimensions": {
         "bounding_boxes": [],
-        "keypoints": [],
-        "no_hands": false
-      }
+        "keypoints": []
+      },
+      "no_hands": false
     },
     {
       "id": 7,
@@ -129,9 +129,9 @@
       "annotator_id": "",
       "image_dimensions": {
         "bounding_boxes": [],
-        "keypoints": [],
-        "no_hands": false
-      }
+        "keypoints": []
+      },
+      "no_hands": false
     },
     {
       "id": 8,
@@ -145,9 +145,9 @@
       "annotator_id": "",
       "image_dimensions": {
         "bounding_boxes": [],
-        "keypoints": [],
-        "no_hands": false
-      }
+        "keypoints": []
+      },
+      "no_hands": false
     }
   ]
 }

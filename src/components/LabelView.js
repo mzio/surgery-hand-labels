@@ -224,9 +224,11 @@ class LabelView extends Component {
         console.log(this.state.handId);
         break;
       case 78:
-        console.log("n (no hands)");
-        this.setState({ noHands: true, submit: true });
-        break;
+        if (this.state.keypointState === "New Hand") {
+          console.log("n (no hands)");
+          this.setState({ noHands: true, submit: true });
+          break;
+        }
       case 8:
         console.log("backspace (go back)");
         if (this.state.keypointState === "Review") {
