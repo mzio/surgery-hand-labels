@@ -4,6 +4,7 @@ import App from "../components/App";
 import config from "../config";
 import queryString from "qs";
 import data from "../data";
+import { tsImportEqualsDeclaration } from "@babel/types";
 
 function importAll(r) {
   return r.keys().map(r);
@@ -54,7 +55,8 @@ export default class AppContainer extends Component {
         var res_ix = start_ix + 1;
         this.setState({
           imageURL: images[start_ix],
-          keypoints: res.data[res_ix].keypoints,
+          keypoints: res.data[res_ix].labels.keypoints,
+          boundingBoxes: res.data[res_ix].labels.bounding_boxes,
           imageID: res.data[res_ix].id,
           lastLabeled: lastLabeled,
           imageName: res.data[res_ix].name
@@ -83,6 +85,7 @@ export default class AppContainer extends Component {
         showSidePanel={true}
         progress={progress}
         keypoints={this.state.keypoints}
+        boundingBoxes={this.state.boundingBoxes}
         imageID={this.state.imageID}
         imageName={this.state.imageName}
         lastLabeled={this.state.lastLabeled}
