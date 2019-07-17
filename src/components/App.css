@@ -191,9 +191,9 @@ h3 {
   /*left: 50%;*/
   top: 10%;
   font-weight: 900;
-  padding: 1rem;
+  padding: 1rem 0rem;
   /*width: 750px;*/
-  text-align: center;
+  text-align: left;
   /*height: 50px;*/
   margin: 0 auto;
   color: #232426;
