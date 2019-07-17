@@ -13,13 +13,12 @@
         "bounding_boxes": [],
         "keypoints": []
       },
-      "keypoints": true,
       "annotator_id": "",
       "image_dimensions": {
         "bounding_boxes": [],
-        "keypoints": [],
-        "no_hands": false
-      }
+        "keypoints": []
+      },
+      "no_hands": false
     },
     {
       "id": 1,
@@ -29,13 +28,12 @@
         "bounding_boxes": [],
         "keypoints": []
       },
-      "keypoints": true,
       "annotator_id": "",
       "image_dimensions": {
         "bounding_boxes": [],
-        "keypoints": [],
-        "no_hands": false
-      }
+        "keypoints": []
+      },
+      "no_hands": false
     },
     {
       "id": 2,
@@ -45,13 +43,12 @@
         "bounding_boxes": [],
         "keypoints": []
       },
-      "keypoints": true,
       "annotator_id": "",
       "image_dimensions": {
         "bounding_boxes": [],
-        "keypoints": [],
-        "no_hands": false
-      }
+        "keypoints": []
+      },
+      "no_hands": false
     },
     {
       "id": 3,
@@ -61,13 +58,12 @@
         "bounding_boxes": [],
         "keypoints": []
       },
-      "keypoints": false,
       "annotator_id": "",
       "image_dimensions": {
         "bounding_boxes": [],
-        "keypoints": [],
-        "no_hands": false
-      }
+        "keypoints": []
+      },
+      "no_hands": false
     },
     {
       "id": 4,
@@ -77,13 +73,12 @@
         "bounding_boxes": [],
         "keypoints": []
       },
-      "keypoints": false,
       "annotator_id": "",
       "image_dimensions": {
         "bounding_boxes": [],
-        "keypoints": [],
-        "no_hands": false
-      }
+        "keypoints": []
+      },
+      "no_hands": false
     },
     {
       "id": 5,
@@ -93,13 +88,12 @@
         "bounding_boxes": [],
         "keypoints": []
       },
-      "keypoints": true,
       "annotator_id": "",
       "image_dimensions": {
         "bounding_boxes": [],
-        "keypoints": [],
-        "no_hands": false
-      }
+        "keypoints": []
+      },
+      "no_hands": false
     },
     {
       "id": 6,
@@ -109,13 +103,12 @@
         "bounding_boxes": [],
         "keypoints": []
       },
-      "keypoints": false,
       "annotator_id": "",
       "image_dimensions": {
         "bounding_boxes": [],
-        "keypoints": [],
-        "no_hands": false
-      }
+        "keypoints": []
+      },
+      "no_hands": false
     },
     {
       "id": 7,
@@ -125,13 +118,12 @@
         "bounding_boxes": [],
         "keypoints": []
       },
-      "keypoints": false,
       "annotator_id": "",
       "image_dimensions": {
         "bounding_boxes": [],
-        "keypoints": [],
-        "no_hands": false
-      }
+        "keypoints": []
+      },
+      "no_hands": false
     },
     {
       "id": 8,
@@ -141,13 +133,12 @@
         "bounding_boxes": [],
         "keypoints": []
       },
-      "keypoints": false,
       "annotator_id": "",
       "image_dimensions": {
         "bounding_boxes": [],
-        "keypoints": [],
-        "no_hands": false
-      }
+        "keypoints": []
+      },
+      "no_hands": false
     }
   ]
 }

@@ -9,7 +9,7 @@ class App extends Component {
     this.props = props;
     this.toggleHand = this.toggleHand.bind(this);
     this.state = {
-      hand: "right",
+      hand: "left",
       keypoint: 0
     };
   }
@@ -58,6 +58,7 @@ class App extends Component {
           showSidePanel={this.props.showSidePanel}
           progress={this.props.progress}
           keypoints={this.props.keypoints}
+          boundingBoxes={this.props.boundingBoxes}
           hand={this.state.hand}
           lastLabeled={this.props.lastLabeled}
           keypointImages={this.props.keypointImages}

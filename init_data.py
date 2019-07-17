@@ -25,13 +25,12 @@ def create_image_object(name, path, ix, keypoint=False):
                 'bounding_boxes': [],
                 'keypoints': []
             },
-            'keypoints': keypoint,
             'annotator_id': '',
             'image_dimensions': {  # May be redundant
                 'bounding_boxes': [],
                 'keypoints': [],
-                'no_hands': False
-            }}
+            },
+            'no_hands': False}
 
 
 if __name__ == "__main__":

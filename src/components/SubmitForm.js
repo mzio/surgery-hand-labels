@@ -118,8 +118,7 @@ export default class SubmitForm extends Component {
                   For each new hand, you'll only be able to label a specific
                   keypoint once. Use the arrow keys or <b>A</b> / <b>D</b> to
                   switch between keypoints. Press <b>C</b> to toggle crosshairs.
-                  After all points are labeled, hit <b>Enter</b>. Again, press{" "}
-                  <b>N</b> if there are no hands in the image.
+                  After all points are labeled, hit <b>Enter</b>.
                 </p>
               </Card.Text>
               <Form id="submitForm" style={{ height: "0px" }}>

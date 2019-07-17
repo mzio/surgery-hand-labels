@@ -111,15 +111,21 @@ class LabelView extends Component {
   }
 
   loadBoxes() {
-    // this.props.savedBoxes.forEach((e) => {
-    //   this.props.commitDrawingAsBox(
-    //     e.id,
-    //     e.
-    //     this.state.currentBoxId,
-    //     boxPosition,
-    //     this.props.hand
-    //   );
-    // });
+    // this.setState({ isDrawing: true });
+    const imageProps = this.props.imageProps;
+    for (var ix in this.props.boundingBoxes) {
+      var box = this.props.boundingBoxes[ix];
+      const { top, left, width, height } = box.position;
+      const imagePosition = {
+        top: parseFloat(top) * imageProps.height,
+        left: parseFloat(left) * imageProps.width,
+        width: parseFloat(width) * imageProps.width,
+        height: parseFloat(height) * imageProps.height
+      };
+      box = { id: parseInt(box.id), position: imagePosition, hand: box.hand };
+      this.props.commitDrawingAsBox(box.id, imagePosition, box.hand);
+      this.refreshDrawing();
+    }
   }
 
   changeLabelingMode() {
@@ -173,6 +179,7 @@ class LabelView extends Component {
             this.state.starting !== true
           ) {
             this.setState({ keypointState: "Labeling" });
+            this.loadBoxes();
           } else if (this.state.keypointState === "Labeling") {
             this.setState({ keypointState: "Review", keypointImageIndex: 21 });
           }
@@ -224,9 +231,11 @@ class LabelView extends Component {
         console.log(this.state.handId);
         break;
       case 78:
-        console.log("n (no hands)");
-        this.setState({ noHands: true, submit: true });
-        break;
+        if (this.state.keypointState === "New Hand") {
+          console.log("n (no hands)");
+          this.setState({ noHands: true, submit: true });
+          break;
+        }
       case 8:
         console.log("backspace (go back)");
         if (this.state.keypointState === "Review") {
@@ -344,8 +353,6 @@ class LabelView extends Component {
                 this.state.occluded
               );
             }
-
-            // }
           } catch (e) {
             // console.log(e);
             this.props.commitDrawingAsKeypoint(
@@ -415,8 +422,8 @@ class LabelView extends Component {
     );
   }
 
-  renderLabels(thingsToRender) {
-    if (this.state.keypoints) {
+  renderLabels(thingsToRender, stateKeypoints, boxesToRender) {
+    if (stateKeypoints) {
       return (
         <div id="LabelView">
           {this.state.showCrosshair && this.isCrosshairReady() && (
@@ -432,6 +439,14 @@ class LabelView extends Component {
               keypoints={thingsToRender}
               isDrawing={this.state.isDrawing}
               occluded={this.state.occluded}
+            />
+          )}
+          {boxesToRender.length > 0 && (
+            <BoundingBoxes
+              className="BoundingBoxes unselectable"
+              boxes={boxesToRender}
+              isDrawing={this.state.isDrawing}
+              deletable={false}
             />
           )}
           <ImageContainer imageURL={this.props.imageURL} />
@@ -452,6 +467,7 @@ class LabelView extends Component {
               className="BoundingBoxes unselectable"
               boxes={thingsToRender}
               isDrawing={this.state.isDrawing}
+              deletable={true}
             />
           )}
           <ImageContainer imageURL={this.props.imageURL} />
@@ -583,6 +599,7 @@ class LabelView extends Component {
     if (this.state.keypoints) {
       // Keypoints
       var thingsToRender = this.props.committedKeypoints.slice(0);
+      var boxesToRender = this.props.committedBoxes.slice(0);
       // console.log(thingsToRender);
       if (this.state.startX != null) {
         thingsToRender.push({
@@ -597,7 +614,7 @@ class LabelView extends Component {
     } else {
       // Boxes
       var thingsToRender = this.props.committedBoxes.slice(0);
-
+      var boxesToRender = [];
       if (this.state.startX != null) {
         thingsToRender.push({
           id: this.state.currentBoxId,
@@ -626,7 +643,13 @@ class LabelView extends Component {
             </Col>
           </Row>
           <Row>
-            <Col sm={8}>{this.renderLabels(thingsToRender)}</Col>
+            <Col sm={8}>
+              {this.renderLabels(
+                thingsToRender,
+                this.state.keypoints,
+                boxesToRender
+              )}
+            </Col>
             <Col sm={4}>
               {/* <div id="Middle"> */}
               {this.props.showSidePanel && (

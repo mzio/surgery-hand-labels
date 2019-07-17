@@ -31,8 +31,14 @@ export default class SubmitButton extends Component {
   getNormalizedBoxes() {
     const normalizedBoxes = [];
     for (var key in this.props.boundingBoxes) {
-      const box = this.props.boundingBoxes[key].position;
-      const normalizedBox = this.normalizePosition(box, true);
+      const box = this.props.boundingBoxes[key];
+      // var normalizedBox
+      const normalizedBox = {
+        position: this.normalizePosition(box.position, true),
+        hand: box.hand,
+        id: box.id
+      };
+
       normalizedBoxes.push(normalizedBox);
     }
     return normalizedBoxes;
