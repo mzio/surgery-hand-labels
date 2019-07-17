@@ -15,7 +15,7 @@ class App extends Component {
   }
   componentDidMount() {
     document.addEventListener("keydown", this.toggleHand);
-    console.log(this.props.keypoints);
+    // console.log(this.props.keypoints);
   }
 
   componentWillUnmount() {
@@ -63,6 +63,7 @@ class App extends Component {
           keypointImages={this.props.keypointImages}
           modeKeypoints={this.props.modeKeypoints}
           finished={this.props.finished}
+          imageName={this.props.imageName}
         />
       </div>
     );

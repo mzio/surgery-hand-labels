@@ -29,7 +29,8 @@ def create_image_object(name, path, ix, keypoint=False):
             'annotator_id': '',
             'image_dimensions': {  # May be redundant
                 'bounding_boxes': [],
-                'keypoints': []
+                'keypoints': [],
+                'no_hands': False
             }}
 
 

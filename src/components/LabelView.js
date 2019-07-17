@@ -58,7 +58,9 @@ class LabelView extends Component {
       handId: 0, // For connecting keypoints to hands
       task: this.props.modeKeypoints ? "Keypoints" : "Bounding Boxes",
       keypointState: "New Hand", // "New Hand" (select a hand), "Labeling" (place keypoints), "Review" (after, hit enter to move to next or n for new hand)
-      occluded: false
+      occluded: false,
+      noHands: false,
+      starting: true
     };
   }
 
@@ -155,16 +157,21 @@ class LabelView extends Component {
         break;
       case 76:
         console.log("You just pressed L!");
+        this.setState({ starting: false });
         break;
       case 82:
         console.log("You just pressed R!");
+        this.setState({ starting: false });
         break;
       case 13:
         console.log("You just pressed Enter!");
         if (this.state.keypoints) {
           if (this.state.keypointState === "Review") {
             this.setState({ submit: true });
-          } else if (this.state.keypointState === "New Hand") {
+          } else if (
+            this.state.keypointState === "New Hand" &&
+            this.state.starting !== true
+          ) {
             this.setState({ keypointState: "Labeling" });
           } else if (this.state.keypointState === "Labeling") {
             this.setState({ keypointState: "Review", keypointImageIndex: 21 });
@@ -206,8 +213,8 @@ class LabelView extends Component {
         console.log(this.state.keypoints);
         this.changeLabelingMode();
         break;
-      case 78:
-        console.log("n (new hand)");
+      case 72:
+        console.log("h (new hand)");
         this.setState({
           handId: (this.state.handId += 1),
           keypointState: "New Hand",
@@ -215,6 +222,11 @@ class LabelView extends Component {
           keypointIndex: 0
         });
         console.log(this.state.handId);
+        break;
+      case 78:
+        console.log("n (no hands)");
+        this.setState({ noHands: true, submit: true });
+        break;
       case 8:
         console.log("backspace (go back)");
         if (this.state.keypointState === "Review") {
@@ -224,6 +236,7 @@ class LabelView extends Component {
             keypointIndex: 20
           });
         }
+        break;
       default:
         break;
     }
@@ -260,7 +273,7 @@ class LabelView extends Component {
   mouseDownHandler(event) {
     // only start drawing if the mouse was pressed
     // down inside the image that we want labelled
-    console.log(event.target.className);
+    // console.log(event.target.className);
     if (
       event.target.className !== "line" &&
       event.target.id !== "LabelViewImg" &&
@@ -272,7 +285,9 @@ class LabelView extends Component {
     if (this.state.keypoints) {
       this.createKeypoint(event);
     } else {
-      this.createRectangle(event);
+      if (this.state.starting !== true) {
+        this.createRectangle(event);
+      }
     }
   }
 
@@ -297,12 +312,29 @@ class LabelView extends Component {
           try {
             var committedKeypoints = this.props.committedKeypoints;
             var keypointIndex = this.state.keypointIndex;
-            var handId = this.state.handId;
-            if (
-              committedKeypoints.filter(function(e) {
-                return e.keypointIndex === keypointIndex && e.handId === handId;
-              }).length === 0
-            ) {
+            // var handId = this.state.handId;
+            var count = 0;
+            for (var i = 0; i < committedKeypoints.length; i++) {
+              var keypoint = committedKeypoints[i];
+              // console.log(keypoint);
+              if (
+                keypoint.handId === this.state.handId &&
+                keypoint.keypointIndex === keypointIndex
+              ) {
+                this.props.deleteDrawingAsKeypoint(keypoint.id);
+                this.props.commitDrawingAsKeypoint(
+                  keypoint.id,
+                  keypointPosition,
+                  this.props.hand,
+                  this.state.handId,
+                  this.state.keypointIndex,
+                  this.state.occluded
+                );
+                this.refreshDrawingKeypoints();
+                count += 1;
+              }
+            }
+            if (count === 0) {
               this.props.commitDrawingAsKeypoint(
                 this.state.currentKeypointId,
                 keypointPosition,
@@ -312,6 +344,8 @@ class LabelView extends Component {
                 this.state.occluded
               );
             }
+
+            // }
           } catch (e) {
             // console.log(e);
             this.props.commitDrawingAsKeypoint(
@@ -427,26 +461,80 @@ class LabelView extends Component {
   }
 
   renderKeypointHeader() {
+    var hand = this.state.starting ? "please specify!" : this.props.hand;
+    var style = this.state.starting
+      ? { color: "#add8e6" }
+      : { color: "#007bff" };
     if (this.state.keypoints) {
-      var occludedText = "";
+      var occludedText = "No";
       if (this.state.occluded) {
-        occludedText = " (occluded)";
+        occludedText = "Yes";
       }
       return (
-        <h3 style={{ textAlign: "center" }}>
-          Currently annotating hand {this.state.handId} (
-          <span style={{ color: "#007bff" }}>{this.props.hand}</span>) and
-          keypoint {this.state.keypointIndex}
-          <span style={{ color: "#A0A0A0" }}>{occludedText}</span>
-        </h3>
+        <div>
+          <Row>
+            <Col sm={4}>
+              {" "}
+              <h3>Hand Number: {this.state.handId}</h3>
+            </Col>
+            <Col sm={3}>
+              {" "}
+              <h3>Keypoint: {this.state.keypointIndex}</h3>
+            </Col>
+            <Col sm={5}>
+              <h3>Image: {this.props.imageName}</h3>
+            </Col>
+          </Row>
+          <Row>
+            <Col sm={4}>
+              <h3>
+                {" "}
+                Hand Type:
+                <span style={style}> {hand}</span>
+              </h3>
+            </Col>
+            <Col sm={3}>
+              {" "}
+              <h3>Occluded: {occludedText}</h3>
+            </Col>
+          </Row>
+        </div>
       );
     } else {
       return (
-        <h2 style={{ textAlign: "center" }}>
-          Currently annotating{" "}
-          <span style={{ color: "#007bff" }}>{this.props.hand}</span> hands
-        </h2>
+        <div>
+          <Row>
+            <Col sm={4}>
+              <h3>
+                {" "}
+                Hand Type:
+                <span style={style}> {hand}</span>
+              </h3>
+            </Col>
+            <Col sm={8}>
+              {" "}
+              <h3>Image: {this.props.imageName}</h3>
+            </Col>
+          </Row>
+        </div>
       );
+      if (this.state.starting) {
+        return (
+          <h2>
+            Hand: <span style={{ color: "#add8e6" }}>please specify!</span>
+            {/* Currently annotating{" "}
+            <span style={{ color: "#007bff" }}>{this.props.hand}</span> hands */}
+          </h2>
+        );
+      } else {
+        return (
+          <h2>
+            Hand: <span style={{ color: "#007bff" }}>{this.props.hand}</span>
+            {/* Currently annotating{" "}
+            <span style={{ color: "#007bff" }}>{this.props.hand}</span> hands */}
+          </h2>
+        );
+      }
     }
   }
 
@@ -465,7 +553,6 @@ class LabelView extends Component {
   }
 
   renderFinished() {
-    console.log(this.props.finished);
     var task = this.state.keypoints ? "keypoints" : "bounding boxes";
     var otherTask = this.state.keypoints ? "bounding boxes" : "keypoints";
     return (
@@ -569,6 +656,7 @@ class LabelView extends Component {
                 hand={this.props.hand}
                 lastLabeled={this.props.lastLabeled}
                 submit={this.state.submit}
+                noHands={this.state.noHands}
                 show={false}
                 keypoints={this.state.keypoints}
                 keypointState={this.state.keypointState}

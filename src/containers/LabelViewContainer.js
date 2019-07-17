@@ -1,7 +1,12 @@
 import { connect } from "react-redux";
 import { ActionCreators as UndoActionCreators } from "redux-undo";
 import LabelView from "../components/LabelView";
-import { addBox, addKeypoint } from "../actions";
+import {
+  addBox,
+  addKeypoint,
+  updateKeypoint,
+  deleteKeypoint
+} from "../actions";
 import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from "constants";
 
 // convert JSON key-value pairs of boxes to Array
@@ -48,6 +53,21 @@ const mapDispatchToProps = dispatch => {
       dispatch(
         addKeypoint(id, position, hand, handId, keypointIndex, occluded)
       );
+    },
+    updateDrawingAsKeypoint: (
+      id,
+      position,
+      hand,
+      handId,
+      keypointIndex,
+      occluded
+    ) => {
+      dispatch(
+        updateKeypoint(id, position, hand, handId, keypointIndex, occluded)
+      );
+    },
+    deleteDrawingAsKeypoint: id => {
+      dispatch(deleteKeypoint(id));
     },
     onUndo: () => dispatch(UndoActionCreators.undo()),
     onRedo: () => dispatch(UndoActionCreators.redo()),

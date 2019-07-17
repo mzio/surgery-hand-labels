@@ -46,23 +46,23 @@ export default class Keypoint extends Component {
     return `rgba(${vals},${transparency})`;
   }
 
-  getStyle(outer, rgba) {
+  getStyle(outer, rgba, size) {
     if (outer) {
       return {
-        top: "-10px",
-        left: "-10px",
-        width: "20px",
-        height: "20px",
+        top: `-${size / 2}px`,
+        left: `-${size / 2}px`,
+        width: `${size}px`,
+        height: `${size}px`,
         position: "absolute",
         borderRadius: "50%",
         backgroundColor: rgba
       };
     } else {
       return {
-        top: "25%",
-        left: "25%",
-        width: "50%",
-        height: "50%",
+        top: "20%", // 25
+        left: "20%", // 25
+        width: "60%", // 50
+        height: "60%", // 50
         position: "absolute",
         borderRadius: "50%",
         backgroundColor: rgba,
@@ -91,14 +91,16 @@ export default class Keypoint extends Component {
           className="outer"
           style={this.getStyle(
             true,
-            this.getColor(true, this.props.keypoint.keypointIndex)
+            this.getColor(true, this.props.keypoint.keypointIndex),
+            15 // 20
           )}
         >
           <div
             className="inner"
             style={this.getStyle(
               false,
-              this.getColor(false, this.props.keypoint.keypointIndex)
+              this.getColor(false, this.props.keypoint.keypointIndex),
+              15
             )}
           />
         </div>

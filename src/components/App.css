@@ -12,7 +12,7 @@ p {
 h1 {
   font-family: sans-serif;
   font-weight: 600;
-  font-size: 50px;
+  font-size: 25px;
 }
 
 h2 {
@@ -191,15 +191,15 @@ h3 {
   /*left: 50%;*/
   top: 10%;
   font-weight: 900;
-  padding: 1rem;
+  padding: 1rem 0rem;
   /*width: 750px;*/
-  text-align: center;
+  text-align: left;
   /*height: 50px;*/
   margin: 0 auto;
   color: #232426;
   font-family: sans-serif;
   font-weight: 600;
-  font-size: 50px;
+  font-size: 30px;
 }
 
 #Progress {

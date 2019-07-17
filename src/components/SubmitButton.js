@@ -137,6 +137,9 @@ export default class SubmitButton extends Component {
             this.getNormalizedKeypoints()
           );
           data.image_dimensions.keypoints = this.getImageDimensions();
+          if (this.props.noHands) {
+            data.no_hands = true;
+          }
           console.log(data);
           axios.put(imagePath, data).then(res => {
             console.log(res);
@@ -148,6 +151,9 @@ export default class SubmitButton extends Component {
         } else {
           data.labels.bounding_boxes = this.getNormalizedBoxes();
           data.image_dimensions.bounding_boxes = this.getImageDimensions();
+          if (this.props.noHands) {
+            data.no_hands = true;
+          }
           axios.put(imagePath, data).then(res => {
             console.log(res);
             axios.put(labelIndex, {

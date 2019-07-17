@@ -56,7 +56,8 @@ export default class AppContainer extends Component {
           imageURL: images[start_ix],
           keypoints: res.data[res_ix].keypoints,
           imageID: res.data[res_ix].id,
-          lastLabeled: lastLabeled
+          lastLabeled: lastLabeled,
+          imageName: res.data[res_ix].name
         });
       })
       .catch(err => {
@@ -83,6 +84,7 @@ export default class AppContainer extends Component {
         progress={progress}
         keypoints={this.state.keypoints}
         imageID={this.state.imageID}
+        imageName={this.state.imageName}
         lastLabeled={this.state.lastLabeled}
         keypointImages={keypoints}
         modeKeypoints={config.keypoints}
