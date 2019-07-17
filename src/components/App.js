@@ -15,7 +15,7 @@ class App extends Component {
   }
   componentDidMount() {
     document.addEventListener("keydown", this.toggleHand);
-    console.log(this.props.keypoints);
+    // console.log(this.props.keypoints);
   }
 
   componentWillUnmount() {
