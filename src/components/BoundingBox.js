@@ -9,7 +9,8 @@ export default class BoundingBox extends Component {
     this.mouseLeaveHandler = this.mouseLeaveHandler.bind(this);
     this.timer = null;
     this.state = {
-      mouseOver: false
+      mouseOver: false,
+      deletable: this.props.deletable
     };
   }
 
@@ -36,7 +37,7 @@ export default class BoundingBox extends Component {
         onMouseOver={this.mouseOverHandler}
         onMouseLeave={this.mouseLeaveHandler}
       >
-        {this.state.mouseOver && (
+        {this.state.mouseOver && this.state.deletable && (
           <DeleteBoxButtonContainer
             boxId={this.props.box.id}
             isDrawing={this.props.isDrawing}

@@ -18,7 +18,12 @@ export default class BoundingBoxes extends Component {
     const boxesToRender = this.props.boxes.map((box, index) => {
       // console.log(box);
       return (
-        <BoundingBox key={box.id} isDrawing={this.props.isDrawing} box={box} />
+        <BoundingBox
+          key={box.id}
+          isDrawing={this.props.isDrawing}
+          box={box}
+          deletable={this.props.deletable}
+        />
       );
     });
 
