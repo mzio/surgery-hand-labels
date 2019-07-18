@@ -3,7 +3,11 @@
     {
       "id": "labeled_index",
       "last_labeled_bounding_box": -1,
-      "last_labeled_keypoint": -1
+      "last_labeled_keypoint": -1,
+      "bounding_box_done": false,
+      "keypoints_done": false,
+      "folder_name": "",
+      "your_name": ""
     },
     {
       "id": 0,

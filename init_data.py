@@ -58,7 +58,11 @@ if __name__ == "__main__":
 
     data = {'data': [{'id': "labeled_index",
                       'last_labeled_bounding_box': -1,
-                      'last_labeled_keypoint': -1}]}
+                      'last_labeled_keypoint': -1,
+                      'bounding_box_done': False,
+                      'keypoints_done': False,
+                      'folder_name': "",
+                      'your_name': ""}]}
     start_ix = args.index
     for ix, image in enumerate(images):
         name = image  # for now just keep original image name
