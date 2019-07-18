@@ -14,10 +14,10 @@ Socially obligated to say this: this project was bootstrapped with `create-react
 
 > > :warning: **Heads Up**!  
 > > The following was only tested on Macs.
+The only requirements you need out of the box are Python (built with 3.6, but 2 also should work) and npm. You can install npm [here](https://www.npmjs.com/get-npm).      
 
 After git cloning, install ~~all~~ most dependencies with: `cd surgery-hand-labels && npm install .`
 
-- Make sure you [have `npm` first](https://www.npmjs.com/get-npm)
 - For a list of all dependencies, see `package.json`
 
 We want to install one dependency globally: `json-server`. This will serve as a makeshift backend server. To do so, run `npm install -g json-server`

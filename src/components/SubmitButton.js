@@ -32,13 +32,11 @@ export default class SubmitButton extends Component {
     const normalizedBoxes = [];
     for (var key in this.props.boundingBoxes) {
       const box = this.props.boundingBoxes[key];
-      // var normalizedBox
       const normalizedBox = {
+        id: box.id,
         position: this.normalizePosition(box.position, true),
-        hand: box.hand,
-        id: box.id
+        hand: box.hand
       };
-
       normalizedBoxes.push(normalizedBox);
     }
     return normalizedBoxes;
@@ -136,6 +134,11 @@ export default class SubmitButton extends Component {
     axios.get(labelIndex).then(res => {
       var lastBoundingBox = res.data.last_labeled_bounding_box;
       var lastKeypoint = res.data.last_labeled_keypoint;
+      var boundingBoxDone = res.data.bounding_box_done;
+      var keypointsDone = res.data.keypoints_done;
+      var folderName = res.data.folder_name;
+      var yourName = res.data.your_name;
+
       axios.get(imagePath).then(res => {
         var data = res.data;
         if (mode == "keypoints") {
@@ -151,7 +154,11 @@ export default class SubmitButton extends Component {
             console.log(res);
             axios.put(labelIndex, {
               last_labeled_bounding_box: lastBoundingBox,
-              last_labeled_keypoint: lastKeypoint + 1
+              last_labeled_keypoint: lastKeypoint + 1,
+              bounding_box_done: boundingBoxDone,
+              keypoints_done: keypointsDone,
+              folder_name: folderName,
+              your_name: yourName
             });
           });
         } else {
@@ -164,7 +171,11 @@ export default class SubmitButton extends Component {
             console.log(res);
             axios.put(labelIndex, {
               last_labeled_bounding_box: lastBoundingBox + 1,
-              last_labeled_keypoint: lastKeypoint
+              last_labeled_keypoint: lastKeypoint,
+              bounding_box_done: boundingBoxDone,
+              keypoints_done: keypointsDone,
+              folder_name: folderName,
+              your_name: yourName
             });
           });
         }
