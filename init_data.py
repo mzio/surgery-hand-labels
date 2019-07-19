@@ -47,7 +47,8 @@ if __name__ == "__main__":
                         type=int, help='Number to start for data id labeling')
     args = parser.parse_args()
 
-    images = [f for f in listdir(args.path) if isfile(join(args.path, f))]
+    images = [f for f in listdir(args.path) if isfile(
+        join(args.path, f)) and f != '.DS_Store']
 
     # Get indexes for frames to also require keypoint annotation
     num_keypoints = int(len(images) * args.keypoints_ratio)

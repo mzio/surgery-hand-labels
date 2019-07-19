@@ -498,7 +498,12 @@ class LabelView extends Component {
               <h3>Keypoint: {this.state.keypointIndex}</h3>
             </Col>
             <Col sm={5}>
-              <h3>Image: {this.props.imageName}</h3>
+              <h3>
+                Image:{" "}
+                <span style={{ fontSize: "0.75rem" }}>
+                  {this.props.imageName}
+                </span>
+              </h3>
             </Col>
           </Row>
           <Row>
@@ -512,6 +517,10 @@ class LabelView extends Component {
             <Col sm={3}>
               {" "}
               <h3>Occluded: {occludedText}</h3>
+            </Col>
+            <Col sm={5}>
+              {" "}
+              <h3>Image No: {this.props.startIx + 1}</h3>
             </Col>
           </Row>
         </div>
@@ -527,9 +536,17 @@ class LabelView extends Component {
                 <span style={style}> {hand}</span>
               </h3>
             </Col>
-            <Col sm={8}>
+            <Col sm={3}>
               {" "}
-              <h3>Image: {this.props.imageName}</h3>
+              <h3>Image No: {this.props.startIx + 1}</h3>
+            </Col>
+            <Col sm={5}>
+              <h3>
+                Image:{" "}
+                <span style={{ fontSize: "0.75rem" }}>
+                  {this.props.imageName}
+                </span>
+              </h3>
             </Col>
           </Row>
         </div>

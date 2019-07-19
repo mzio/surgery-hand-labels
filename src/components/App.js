@@ -65,6 +65,7 @@ class App extends Component {
           modeKeypoints={this.props.modeKeypoints}
           finished={this.props.finished}
           imageName={this.props.imageName}
+          startIx={this.props.startIx}
         />
       </div>
     );

@@ -70,14 +70,14 @@ export default class AppContainer extends Component {
 
   render() {
     if (config.keypoints) {
-      var start_ix = data.data[0].last_labeled_keypoint + 2;
+      var start_ix = data.data[0].last_labeled_keypoint + 1;
     } else {
-      var start_ix = data.data[0].last_labeled_bounding_box + 2;
+      var start_ix = data.data[0].last_labeled_bounding_box + 1;
     }
-    var progress = Math.round(((start_ix - 1) / (data.data.length - 1)) * 100);
+    var progress = Math.round((start_ix / (data.data.length - 1)) * 100);
 
     var finished = progress >= 100 ? true : false;
-    // console.log(finished);
+    console.log(start_ix);
 
     return (
       <App
@@ -92,6 +92,7 @@ export default class AppContainer extends Component {
         keypointImages={keypoints}
         modeKeypoints={config.keypoints}
         finished={finished}
+        startIx={start_ix}
         // showHeader={true}
       />
     );
