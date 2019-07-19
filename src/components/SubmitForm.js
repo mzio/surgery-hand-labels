@@ -79,9 +79,9 @@ export default class SubmitForm extends Component {
                 <h2>Select a hand type 🙌</h2>
               </Card.Title>
               <Card.Text>
-                Press either <b>R</b> or <b>L</b> to toggle between right or
-                left hand labeling. When the correct hand type is specified, hit{" "}
-                <b>Enter</b>. Hit <b>N</b> if there are no hands in the image.
+                Press <b>R</b> to toggle between right or left hand labeling.
+                When the correct hand type is specified, hit <b>Enter</b>. Hit{" "}
+                <b>N</b> if there are no hands in the image.
               </Card.Text>
               <Form id="submitForm" style={{ height: "0px" }}>
                 <fieldset>
@@ -181,11 +181,10 @@ export default class SubmitForm extends Component {
               <p>
                 For the image loaded, please provide labels for <a>all</a>{" "}
                 hands. To do so, for each hand, first indicate whether you're
-                labeling a right or left hand (toggle with <b>R</b> or <b>L</b>
-                ). Then click and drag to draw a box. After this is done,{" "}
-                <b>repeat</b> for each hand remaining in the image, specifying
-                whether you're currently labeling a right or left hand and
-                drawing a box.
+                labeling a right or left hand (toggle with <b>R</b>). Then click
+                and drag to draw a box. After this is done, <b>repeat</b> for
+                each hand remaining in the image, specifying whether you're
+                currently labeling a right or left hand and drawing a box.
               </p>
               <p>
                 Try to keep boxes as tight as possible, and hit <b>Enter</b> to

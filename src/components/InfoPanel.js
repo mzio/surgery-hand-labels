@@ -42,7 +42,7 @@ export default class InfoPanel extends Component {
             </ListGroup.Item> */}
             <ListGroup.Item style={{ padding: "0.64rem 1.25rem" }}>
               <span id="keybutton">
-                <Badge variant="light">L / R</Badge>
+                <Badge variant="light">R</Badge>
               </span>
               Toggle hand
             </ListGroup.Item>
