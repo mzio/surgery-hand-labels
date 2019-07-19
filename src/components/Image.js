@@ -60,6 +60,8 @@ export default class Image extends Component {
     this.width = img.offsetWidth;
     this.setDimensions();
     // console.log(this.calculateOffset());
+    // console.log(this.height);
+    // console.log(img);
   }
 
   setDimensions() {

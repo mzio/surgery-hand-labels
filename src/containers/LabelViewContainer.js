@@ -22,7 +22,6 @@ const mapStateToProps = (state, ownProps) => {
   const committedKeypointsArray = preprocess(
     state.turktool.committedKeypoints.present
   );
-  // console.log(committedBoxesArray);
   return {
     committedBoxes: committedBoxesArray,
     committedKeypoints: committedKeypointsArray,
@@ -33,7 +32,8 @@ const mapStateToProps = (state, ownProps) => {
     canUndoKeypoint: state.turktool.committedKeypoints.past.length > 0,
     canRedoKeypoint: state.turktool.committedKeypoints.future.length > 0,
     taskId: ownProps.taskId,
-    hand: ownProps.hand
+    hand: ownProps.hand,
+    boundingBoxes: ownProps.boundingBoxes
   };
 };
 

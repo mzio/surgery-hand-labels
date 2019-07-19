@@ -179,7 +179,7 @@ export default class SubmitForm extends Component {
             </Card.Title>
             <Card.Text>
               <p>
-                For the image loaded, please provide labels for <a>all</a>{" "}
+                For the image loaded, please provide labels for <b>all</b>{" "}
                 hands. To do so, for each hand, first indicate whether you're
                 labeling a right or left hand (toggle with <b>R</b>). Then click
                 and drag to draw a box. After this is done, <b>repeat</b> for
@@ -190,6 +190,10 @@ export default class SubmitForm extends Component {
                 Try to keep boxes as tight as possible, and hit <b>Enter</b> to
                 submit labels and move on to the next image. If there are no
                 hands at all in the image, press <b>N</b>.
+              </p>
+              <p>
+                If you'd like to visit past images, press <b>Backspace</b>. To
+                show previous annotations press <b>S</b>.
               </p>
             </Card.Text>
             <Form id="submitForm" style={{ height: "0px" }}>

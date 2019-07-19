@@ -4,7 +4,7 @@ import App from "../components/App";
 import config from "../config";
 import queryString from "qs";
 import data from "../data";
-import { tsImportEqualsDeclaration } from "@babel/types";
+import { tsImportEqualsDeclaration, throwStatement } from "@babel/types";
 
 function importAll(r) {
   return r.keys().map(r);
@@ -29,6 +29,10 @@ export default class AppContainer extends Component {
   componentDidMount() {
     this.loadImageURL();
   }
+
+  // componentWillMount() {
+  //   this.loadImageURL();
+  // }
 
   loadImageURL() {
     // var start_ix = data.data[0].last_labeled + 1;
@@ -62,6 +66,9 @@ export default class AppContainer extends Component {
           imageName: res.data[res_ix].name
         });
       })
+      .then(res => {
+        this.setState({ dataLoaded: true });
+      })
       .catch(err => {
         console.log("Axios API error!");
         console.log(err);
@@ -77,24 +84,27 @@ export default class AppContainer extends Component {
     var progress = Math.round((start_ix / (data.data.length - 1)) * 100);
 
     var finished = progress >= 100 ? true : false;
-    console.log(start_ix);
+    // console.log(start_ix);
 
-    return (
-      <App
-        imageURL={this.state.imageURL}
-        showSidePanel={true}
-        progress={progress}
-        keypoints={this.state.keypoints}
-        boundingBoxes={this.state.boundingBoxes}
-        imageID={this.state.imageID}
-        imageName={this.state.imageName}
-        lastLabeled={this.state.lastLabeled}
-        keypointImages={keypoints}
-        modeKeypoints={config.keypoints}
-        finished={finished}
-        startIx={start_ix}
-        // showHeader={true}
-      />
-    );
+    if (this.state.dataLoaded) {
+      return (
+        <App
+          imageURL={this.state.imageURL}
+          showSidePanel={true}
+          progress={progress}
+          keypoints={this.state.keypoints}
+          boundingBoxes={this.state.boundingBoxes}
+          imageID={this.state.imageID}
+          imageName={this.state.imageName}
+          lastLabeled={this.state.lastLabeled}
+          keypointImages={keypoints}
+          modeKeypoints={config.keypoints}
+          finished={finished}
+          startIx={start_ix}
+          dataLoaded={this.state.dataLoaded}
+        />
+      );
+    }
+    return null;
   }
 }

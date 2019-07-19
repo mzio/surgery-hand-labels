@@ -6,6 +6,8 @@ import Crosshair from "../components/Crosshair";
 import InfoPanel from "../components/InfoPanel";
 import KeypointPanel from "../components/KeypointPanel";
 import SubmitForm from "../components/SubmitForm";
+import axios from "axios";
+
 import {
   calculateRectPosition,
   isRectangleTooSmall,
@@ -13,6 +15,9 @@ import {
 } from "../utils/drawing";
 
 import { Container, Row, Col, ProgressBar, Modal } from "react-bootstrap";
+
+var env = process.env.NODE_ENV;
+var config = require("../config.json");
 
 /**
  * `LabelView` is a container for `LabelImage` and
@@ -69,6 +74,7 @@ class LabelView extends Component {
    */
   componentDidMount() {
     document.addEventListener("keydown", this.handleKeyPress);
+    this.loadBoxes();
   }
 
   /**
@@ -236,13 +242,38 @@ class LabelView extends Component {
           this.setState({ noHands: true, submit: true });
           break;
         }
+      case 83:
+        console.log("s (show annotations)");
+        this.loadBoxes();
+        break;
       case 8:
         console.log("backspace (go back)");
-        if (this.state.keypointState === "Review") {
-          this.setState({
-            keypointState: "Labeling",
-            keypointImageIndex: 20,
-            keypointIndex: 20
+        if (this.state.keypoints) {
+          if (this.state.keypointState === "Review") {
+            this.setState({
+              keypointState: "Labeling",
+              keypointImageIndex: 20,
+              keypointIndex: 20
+            });
+          }
+        } else {
+          // Go back to previous image?
+          const labelIndex = config["submit"][env] + "/labeled_index";
+          axios.get(labelIndex).then(res => {
+            var lastBoundingBox = res.data.last_labeled_bounding_box;
+            var lastKeypoint = res.data.last_labeled_keypoint;
+            var boundingBoxDone = res.data.bounding_box_done;
+            var keypointsDone = res.data.keypoints_done;
+            var folderName = res.data.folder_name;
+            var yourName = res.data.your_name;
+            axios.put(labelIndex, {
+              last_labeled_bounding_box: lastBoundingBox - 1,
+              last_labeled_keypoint: lastKeypoint,
+              bounding_box_done: boundingBoxDone,
+              keypoints_done: keypointsDone,
+              folder_name: folderName,
+              your_name: yourName
+            });
           });
         }
         break;

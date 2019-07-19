@@ -63,6 +63,6 @@ Useful Features:
 
 Nice to have:
 
-- [ ] Enable switching between images
+- [x] Enable switching between images (for bounding box annotations)  
 - [x] Display (bounding box) annotations on load (in keypoint mode)  
 - [ ] Clear all labels key command

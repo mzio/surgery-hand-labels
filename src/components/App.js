@@ -66,6 +66,7 @@ class App extends Component {
           finished={this.props.finished}
           imageName={this.props.imageName}
           startIx={this.props.startIx}
+          dataLoaded={this.props.dataLoaded}
         />
       </div>
     );
