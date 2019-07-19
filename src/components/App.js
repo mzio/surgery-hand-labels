@@ -25,16 +25,16 @@ class App extends Component {
   toggleHand(event) {
     // Mark whether box is right or left hand
     switch (event.keyCode) {
-      case 76:
-        // console.log("You just pressed L!");
-        if (this.state.hand == "right") {
-          this.setState({ hand: "left" });
-        } else if (this.state.hand == "left") {
-          this.setState({ hand: "right" });
-        }
-        // console.log(this.state.hand);
-        // this.setState({ hand: "left" });
-        break;
+      // case 76:
+      //   // console.log("You just pressed L!");
+      //   if (this.state.hand == "right") {
+      //     this.setState({ hand: "left" });
+      //   } else if (this.state.hand == "left") {
+      //     this.setState({ hand: "right" });
+      //   }
+      //   // console.log(this.state.hand);
+      //   // this.setState({ hand: "left" });
+      //   break;
       case 82:
         // console.log("You just pressed R!"r);
         if (this.state.hand == "left") {
