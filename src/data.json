@@ -1,145 +1,534 @@
 {
   "data": [
     {
-      "id": "labeled_index",
-      "last_labeled_bounding_box": -1,
-      "last_labeled_keypoint": -1,
+      "last_labeled_bounding_box": 9,
+      "last_labeled_keypoint": 4,
       "bounding_box_done": false,
       "keypoints_done": false,
       "folder_name": "",
-      "your_name": ""
+      "your_name": "",
+      "id": "labeled_index"
     },
     {
       "id": 0,
-      "name": "frame_10.png",
-      "path": "../images/frame_10.png",
+      "name": "breast-000001-0EeZIRDKYO4-000910.jpg",
+      "path": "../images/breast-000001-0EeZIRDKYO4-000910.jpg",
       "labels": {
         "bounding_boxes": [],
-        "keypoints": []
+        "keypoints": [
+          {
+            "handId": 0,
+            "keypoints": [
+              null,
+              null,
+              null,
+              {
+                "position": {
+                  "top": "0.08455",
+                  "left": "0.61148"
+                },
+                "occluded": false
+              },
+              {
+                "position": {
+                  "top": "0.10204",
+                  "left": "0.89016"
+                },
+                "occluded": false
+              },
+              null,
+              null,
+              null,
+              {
+                "position": {
+                  "top": "0.32070",
+                  "left": "0.74590"
+                },
+                "occluded": false
+              },
+              null,
+              null,
+              null,
+              {
+                "position": {
+                  "top": "0.29155",
+                  "left": "0.63607"
+                },
+                "occluded": false
+              },
+              null,
+              null,
+              null,
+              {
+                "position": {
+                  "top": "0.27988",
+                  "left": "0.55082"
+                },
+                "occluded": false
+              },
+              null,
+              null,
+              null,
+              null
+            ],
+            "hand": "right"
+          }
+        ]
       },
       "annotator_id": "",
       "image_dimensions": {
-        "bounding_boxes": [],
-        "keypoints": []
+        "bounding_boxes": [
+          610,
+          343
+        ],
+        "keypoints": [
+          610,
+          343
+        ]
       },
-      "no_hands": false
+      "no_hands": true
     },
     {
       "id": 1,
-      "name": "frame_20.png",
-      "path": "../images/frame_20.png",
+      "name": "breast-000002-0EeZIRDKYO4-001820.jpg",
+      "path": "../images/breast-000002-0EeZIRDKYO4-001820.jpg",
       "labels": {
         "bounding_boxes": [],
         "keypoints": []
       },
       "annotator_id": "",
       "image_dimensions": {
-        "bounding_boxes": [],
-        "keypoints": []
+        "bounding_boxes": [
+          610,
+          343
+        ],
+        "keypoints": [
+          610,
+          343
+        ]
       },
-      "no_hands": false
+      "no_hands": true
     },
     {
       "id": 2,
-      "name": "frame_30.png",
-      "path": "../images/frame_30.png",
+      "name": "breast-000003-0EeZIRDKYO4-002730.jpg",
+      "path": "../images/breast-000003-0EeZIRDKYO4-002730.jpg",
       "labels": {
-        "bounding_boxes": [],
-        "keypoints": []
+        "bounding_boxes": [
+          {
+            "id": 1,
+            "position": {
+              "top": "0.43149",
+              "left": "0.00164",
+              "width": "0.36557",
+              "height": "0.55685"
+            },
+            "hand": "right"
+          }
+        ],
+        "keypoints": [
+          {
+            "handId": 0,
+            "keypoints": [
+              {
+                "position": {
+                  "top": "0.56560",
+                  "left": "0.27049"
+                },
+                "occluded": false
+              },
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "hand": "left"
+          }
+        ]
       },
       "annotator_id": "",
       "image_dimensions": {
-        "bounding_boxes": [],
-        "keypoints": []
+        "bounding_boxes": [
+          610,
+          343
+        ],
+        "keypoints": [
+          610,
+          343
+        ]
       },
       "no_hands": false
     },
     {
       "id": 3,
-      "name": "frame_40.png",
-      "path": "../images/frame_40.png",
+      "name": "breast-000004-0EeZIRDKYO4-003640.jpg",
+      "path": "../images/breast-000004-0EeZIRDKYO4-003640.jpg",
       "labels": {
         "bounding_boxes": [],
         "keypoints": []
       },
       "annotator_id": "",
       "image_dimensions": {
-        "bounding_boxes": [],
-        "keypoints": []
+        "bounding_boxes": [
+          610,
+          343
+        ],
+        "keypoints": [
+          610,
+          343
+        ]
       },
-      "no_hands": false
+      "no_hands": true
     },
     {
       "id": 4,
-      "name": "frame_50.png",
-      "path": "../images/frame_50.png",
+      "name": "breast-000005-0EeZIRDKYO4-004550.jpg",
+      "path": "../images/breast-000005-0EeZIRDKYO4-004550.jpg",
       "labels": {
-        "bounding_boxes": [],
+        "bounding_boxes": [
+          {
+            "id": 0,
+            "position": {
+              "top": "0.36735",
+              "left": "0.00328",
+              "width": "0.50492",
+              "height": "0.62099"
+            },
+            "hand": "right"
+          }
+        ],
         "keypoints": []
       },
       "annotator_id": "",
       "image_dimensions": {
-        "bounding_boxes": [],
-        "keypoints": []
+        "bounding_boxes": [
+          610,
+          343
+        ],
+        "keypoints": [
+          610,
+          343
+        ]
       },
-      "no_hands": false
+      "no_hands": true
     },
     {
       "id": 5,
-      "name": "frame_60.png",
-      "path": "../images/frame_60.png",
+      "name": "breast-000006-0FHE1jSN3w0-000713.jpg",
+      "path": "../images/breast-000006-0FHE1jSN3w0-000713.jpg",
       "labels": {
-        "bounding_boxes": [],
+        "bounding_boxes": [
+          {
+            "id": 0,
+            "position": {
+              "top": "0.08163",
+              "left": "0.25082",
+              "width": "0.25410",
+              "height": "0.49854"
+            },
+            "hand": "right"
+          },
+          {
+            "id": 1,
+            "position": {
+              "top": "0.03207",
+              "left": "0.54426",
+              "width": "0.17705",
+              "height": "0.36152"
+            },
+            "hand": "left"
+          },
+          {
+            "id": 2,
+            "position": {
+              "top": "0.46356",
+              "left": "0.54262",
+              "width": "0.30820",
+              "height": "0.26239"
+            },
+            "hand": "right"
+          },
+          {
+            "id": 3,
+            "position": {
+              "top": "0.58892",
+              "left": "0.41639",
+              "width": "0.19016",
+              "height": "0.39942"
+            },
+            "hand": "left"
+          }
+        ],
         "keypoints": []
       },
       "annotator_id": "",
       "image_dimensions": {
-        "bounding_boxes": [],
+        "bounding_boxes": [
+          610,
+          343
+        ],
         "keypoints": []
       },
       "no_hands": false
     },
     {
       "id": 6,
-      "name": "frame_70.png",
-      "path": "../images/frame_70.png",
+      "name": "breast-000007-0FHE1jSN3w0-001426.jpg",
+      "path": "../images/breast-000007-0FHE1jSN3w0-001426.jpg",
       "labels": {
-        "bounding_boxes": [],
+        "bounding_boxes": [
+          {
+            "id": 1,
+            "position": {
+              "top": "0.30321",
+              "left": "0.37705",
+              "width": "0.28033",
+              "height": "0.35860"
+            },
+            "hand": "right"
+          },
+          {
+            "id": 2,
+            "position": {
+              "top": "0.58892",
+              "left": "0.50164",
+              "width": "0.48689",
+              "height": "0.39942"
+            },
+            "hand": "left"
+          },
+          {
+            "id": 3,
+            "position": {
+              "top": "0.00875",
+              "left": "0.00000",
+              "width": "0.21148",
+              "height": "0.41399"
+            },
+            "hand": "right"
+          },
+          {
+            "id": 4,
+            "position": {
+              "top": "0.00583",
+              "left": "0.17377",
+              "width": "0.22131",
+              "height": "0.48688"
+            },
+            "hand": "left"
+          }
+        ],
         "keypoints": []
       },
       "annotator_id": "",
       "image_dimensions": {
-        "bounding_boxes": [],
+        "bounding_boxes": [
+          610,
+          343
+        ],
         "keypoints": []
       },
       "no_hands": false
     },
     {
       "id": 7,
-      "name": "frame_80.png",
-      "path": "../images/frame_80.png",
+      "name": "breast-000008-0FHE1jSN3w0-002139.jpg",
+      "path": "../images/breast-000008-0FHE1jSN3w0-002139.jpg",
       "labels": {
-        "bounding_boxes": [],
+        "bounding_boxes": [
+          {
+            "id": 0,
+            "position": {
+              "top": "0.20991",
+              "left": "0.57049",
+              "width": "0.31803",
+              "height": "0.33236"
+            },
+            "hand": "right"
+          },
+          {
+            "id": 1,
+            "position": {
+              "top": "0.44606",
+              "left": "0.40656",
+              "width": "0.27049",
+              "height": "0.43149"
+            },
+            "hand": "left"
+          },
+          {
+            "id": 2,
+            "position": {
+              "top": "0.14286",
+              "left": "0.21475",
+              "width": "0.19344",
+              "height": "0.39650"
+            },
+            "hand": "right"
+          },
+          {
+            "id": 3,
+            "position": {
+              "top": "0.00875",
+              "left": "0.50656",
+              "width": "0.14590",
+              "height": "0.30904"
+            },
+            "hand": "left"
+          },
+          {
+            "id": 4,
+            "position": {
+              "top": "0.01458",
+              "left": "0.62459",
+              "width": "0.21475",
+              "height": "0.25364"
+            },
+            "hand": "right"
+          }
+        ],
         "keypoints": []
       },
       "annotator_id": "",
       "image_dimensions": {
-        "bounding_boxes": [],
+        "bounding_boxes": [
+          610,
+          343
+        ],
         "keypoints": []
       },
       "no_hands": false
     },
     {
       "id": 8,
-      "name": "frame_90.png",
-      "path": "../images/frame_90.png",
+      "name": "breast-000009-0FHE1jSN3w0-002852.jpg",
+      "path": "../images/breast-000009-0FHE1jSN3w0-002852.jpg",
       "labels": {
-        "bounding_boxes": [],
+        "bounding_boxes": [
+          {
+            "id": 0,
+            "position": {
+              "top": "0.37609",
+              "left": "0.30492",
+              "width": "0.36721",
+              "height": "0.38484"
+            },
+            "hand": "right"
+          },
+          {
+            "id": 1,
+            "position": {
+              "top": "0.00583",
+              "left": "0.31967",
+              "width": "0.24918",
+              "height": "0.30321"
+            },
+            "hand": "right"
+          },
+          {
+            "id": 2,
+            "position": {
+              "top": "0.78134",
+              "left": "0.53934",
+              "width": "0.20984",
+              "height": "0.20700"
+            },
+            "hand": "right"
+          },
+          {
+            "id": 3,
+            "position": {
+              "top": "0.12828",
+              "left": "0.55574",
+              "width": "0.20984",
+              "height": "0.34694"
+            },
+            "hand": "left"
+          },
+          {
+            "id": 4,
+            "position": {
+              "top": "0.80175",
+              "left": "0.21475",
+              "width": "0.19016",
+              "height": "0.18659"
+            },
+            "hand": "left"
+          }
+        ],
         "keypoints": []
       },
       "annotator_id": "",
       "image_dimensions": {
-        "bounding_boxes": [],
+        "bounding_boxes": [
+          610,
+          343
+        ],
+        "keypoints": []
+      },
+      "no_hands": false
+    },
+    {
+      "id": 9,
+      "name": "breast-000010-0FHE1jSN3w0-003565.jpg",
+      "path": "../images/breast-000010-0FHE1jSN3w0-003565.jpg",
+      "labels": {
+        "bounding_boxes": [
+          {
+            "id": 0,
+            "position": {
+              "top": "0.09913",
+              "left": "0.70328",
+              "width": "0.26721",
+              "height": "0.45481"
+            },
+            "hand": "right"
+          },
+          {
+            "id": 3,
+            "position": {
+              "top": "0.50437",
+              "left": "0.00328",
+              "width": "0.40492",
+              "height": "0.48397"
+            },
+            "hand": "right"
+          },
+          {
+            "id": 4,
+            "position": {
+              "top": "0.13703",
+              "left": "0.12459",
+              "width": "0.32131",
+              "height": "0.60058"
+            },
+            "hand": "left"
+          }
+        ],
+        "keypoints": []
+      },
+      "annotator_id": "",
+      "image_dimensions": {
+        "bounding_boxes": [
+          610,
+          343
+        ],
         "keypoints": []
       },
       "no_hands": false
