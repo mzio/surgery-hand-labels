@@ -127,7 +127,7 @@ def main():
             ANNOTATION['iscrowd'] = 0
             ANNOTATION['keypoints'] = COCO_keypoints(hand_info['keypoints'],IMAGE['width'],IMAGE['height'])
             # ANNOTATION['keypoints'] = _relative_COCO_keypoints(hand_info['keypoints'])
-            ANNOTATION['num_points'] = _count_num_keypoints(hand_info['keypoints'])
+            ANNOTATION['num_keypoints'] = _count_num_keypoints(hand_info['keypoints'])
             coco_output['annotations'].append(ANNOTATION)
             hand_id = hand_id + 1
     
